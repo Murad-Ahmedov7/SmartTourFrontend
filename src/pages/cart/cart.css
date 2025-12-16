@@ -1,0 +1,358 @@
+
+.customize-tour-container {
+    padding: 30px 60px;
+    background-color: #FDFBF8;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #333;
+}
+
+.tour-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    margin-bottom: 25px;
+}
+
+.tour-header h1 {
+    font-size: 2.2rem;
+    margin: 0;
+}
+
+.filters-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.sort-by {
+    position: relative;
+}
+
+.sort-by select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 10px 35px 10px 15px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.sort-by .select-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    pointer-events: none;
+}
+
+.search-bar {
+    position: relative;
+}
+
+.search-bar input {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 10px 15px 10px 40px;
+    font-size: 1rem;
+    width: 250px;
+}
+
+.search-bar .search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+}
+
+.filter-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.filter-btn:hover {
+    background-color: #f5f5f5;
+}
+
+.category-filters {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 30px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+}
+
+.category-tag {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 8px 18px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.category-tag:hover {
+    border-color: #4A6C9B;
+    color: #4A6C9B;
+}
+
+.category-tag.active {
+    background-color: #f0f4f8;
+    border-color: #4A6C9B;
+    color: #4A6C9B;
+    font-weight: 600;
+}
+
+.tour-main-content {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.route-selection h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.route-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.route-item {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    align-items: center;
+    gap: 15px;
+    background-color: white;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 15px 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.route-icon {
+    font-size: 1.5rem;
+    color: #4A6C9B;
+}
+
+.route-details h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.1rem;
+}
+
+.route-details p {
+    margin: 0;
+    color: #777;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.route-duration {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.route-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: #888;
+}
+
+.icon-btn.edit-btn:hover {
+    color: #007bff;
+}
+
+.icon-btn.remove-btn:hover {
+    color: #dc3545;
+}
+
+.route-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.total-cost strong {
+    color: #333;
+    font-size: 1.5rem;
+}
+
+.page-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #4A6C9B;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #3a557a;
+}
+
+.btn-secondary {
+    background-color: #E9ECEF;
+    color: #333;
+}
+
+.btn-secondary:hover {
+    background-color: #dcdfe2;
+}
+
+.map-display {
+    display: flex;
+    flex-direction: column;
+}
+
+.map-image {
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #eee;
+}
+
+.map-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.map-actions .btn {
+    flex-grow: 1;
+}
+
+.recommended-section {
+    margin-top: 40px;
+    border-top: 1px solid #eee;
+    padding-top: 30px;
+}
+
+.recommended-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.recommended-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  
+}
+
+.recommended-card {
+    border-radius: 12px;
+    background-size: cover;
+    background-position: center;
+    min-height: 200px;
+    position: relative;
+    overflow: hidden;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.recommended-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.6) 100%);
+}
+
+.card-content {
+    position: relative;
+    z-index: 2;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.card-icon {
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+}
+
+.card-content h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.2rem;
+}
+
+.btn-add {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+    border: 1px solid #fff;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    align-self: flex-start;
+}
+
+.btn-add:hover {
+    background-color: white;
+}
+
+.category-filters::-webkit-scrollbar {
+    height: 6px;
+}
+
+.category-filters::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}

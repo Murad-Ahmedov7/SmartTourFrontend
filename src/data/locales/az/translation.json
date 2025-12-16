@@ -1,0 +1,13 @@
+{
+  "navbar": {
+    "about": "Haqqımızda",
+    "contact": "Əlaqə",
+    "help": "Kömək",
+    "language": "AZ"
+  },
+  "hero": {
+    "title": "SmartTour: Azərbaycanda Səyahətin Gələcəyi",
+    "subtitle": "Seç, Kliklə və Rahatlan",
+    "cta": "Səyahətə başla"
+  }
+}

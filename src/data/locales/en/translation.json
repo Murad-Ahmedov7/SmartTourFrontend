@@ -1,0 +1,13 @@
+{
+  "navbar": {
+    "about": "About",
+    "contact": "Contact",
+    "help": "Help",
+    "language": "Eng"
+  },
+  "hero": {
+    "title": "SmartTour: The Future of Travel in Azerbaijan",
+    "subtitle": "Choose, Click and Relax",
+    "cta": "Start your journey"
+  }
+}
