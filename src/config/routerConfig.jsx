@@ -1,7 +1,6 @@
 
 import { Routes, Route } from "react-router-dom";
 import Home from "../pages/home/home";
-import Login from "../pages/login/login";
 import Layout from "../components/layout/Layout";
 import CustomizeTour from "../pages/customizeTour/CustomizeTour";
 import SelectTour from "../pages/selectTour/SelectTour";
@@ -14,11 +13,17 @@ import TravelMemories from "../pages/travelMemories/TravelMemories";
 import Profil from "../pages/profil/Profil";
 import Recommend from "../pages/recommend/Recommend";
 import Community from "../pages/community/Community";
+import Login from "../pages/auth/login/Login";
+import Signup from "../pages/auth/signup/Signup";
+
+
 
 const RouterConfig = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} /><Route path="/login" element={<Login />} />
+      <Route path="/" element={<Home />} />
+      <Route path="/auth/signup" element={<Signup/>}/>
+      <Route path="/auth/login" element={<Login/>}/> 
       <Route element={<Layout />}>
         
         <Route path="/customizeTour" element={<CustomizeTour />} />

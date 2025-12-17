@@ -18,7 +18,7 @@ function HomePage() {
   }, []);
 
   const handleStartJourney = () => {
-    navigate("/login");
+    navigate("/auth/login");
   };
 
   const handleLanguageChange = (e) => {
