@@ -1,25 +1,42 @@
-import { useForm } from "react-hook-form";
+import { useForm,Controller } from "react-hook-form";
 import {Link, useNavigate } from "react-router-dom";
 import "../auth.css";
+import { useState } from "react";
+import { FaRegEye } from "react-icons/fa";
+import { FaRegEyeSlash } from "react-icons/fa";
+// import { useMaskInput } from "use-mask-input"; 
 
+
+import { InputMask } from '@react-input/mask';
+
+export const required = value => (value ? undefined : "Sehv");
 export default function SignupForm() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const {register,handleSubmit,watch,formState: { errors,isValid },control}= useForm({ mode: "onChange" })
 
   const navigate = useNavigate();
 
-  const EyeIcon = () => <span>👁️</span>;
+  const [showPassword,setShowPassword]=useState(false);
+  const [showConfirmPassword,setShowConfirmPassword]=useState(false);
+  
+  const password=watch("password");
+
+
+    // use-mask-input ilə telefon inputunu yarat
+  // const maskedPhoneRef = useMaskInput({
+  //   mask: ["99 999 99 99"], // istədiyin format
+  //    register: register({
+  //     validate: {
+  //       required: val => required(val)
+  //     }
+  //   })
+  // });
 
   const onSubmit = (data) => {
     console.log(data);
   };
 
-  const handleSignInClick = () => {
-  navigate("/auth/login");
-};
+
+
 
 
   return (
@@ -66,32 +83,93 @@ export default function SignupForm() {
       </div>
 
       <div className="input-group">
-        <label htmlFor="phone">Phone number</label>
+        <label >Phone number</label>
         <div className="phone-input">
           <span>(+994)</span>
-          <input
+            <input
             type="tel"
             {...register("phoneNumber", {
               required: "Phone number is required",
-              pattern: {
-                value: /^[+0-9\s\-]{7,15}$/,
-                message: "Please enter a valid phone number",
-              },
             })}
             id="phone"
             placeholder="-- --- -- --"
-          />
+                onChange={(e) => {
+        let val = e.target.value.replace(/\D/g, ""); // rəqəm olmayanları sil
+        if (val.length > 9) val = val.slice(0, 9); // maksimum 9 rəqəm
+
+
+        let formatted = "";
+        if (val.length > 0) formatted = val.slice(0, 2);
+        if (val.length > 2) formatted += "-" + val.slice(2, 5);
+        if (val.length > 5) formatted += "-" + val.slice(5, 7);
+        if (val.length > 7) formatted += "-" + val.slice(7, 9);
+
+        e.target.value = formatted;
+      }}
+          /> 
+        
+
+
+
+
+
         </div>
         {errors.phoneNumber && (
           <p className="error-message"> {errors.phoneNumber.message}</p>
         )}
-      </div>
+      </div> 
+
+
+      
+      {/* <div className="input-group">
+        <label >Phone number</label>
+        <div className="phone-input">
+          <span>(+994)</span>
+<Controller
+  name="phoneNumber"
+  control={control}
+  rules={{ required: "Phone number is required",    validate: (val) => {
+      const numbersOnly = val.replace(/\D/g, "");
+      return numbersOnly.length === 9 || "Phone number must be 9 digits";
+    }}}
+  render={({ field, fieldState }) => (
+    <>
+      <input
+        {...field}
+        type="text"
+        placeholder="-- --- -- --"
+        onChange={(e) => {
+          let val = e.target.value.replace(/\D/g, "");
+          if (val.length > 9) val = val.slice(0, 9);
+
+          let formatted = "";
+          if (val.length > 0) formatted = val.slice(0, 2);
+          if (val.length > 2) formatted += "-" + val.slice(2, 5);
+          if (val.length > 5) formatted += "-" + val.slice(5, 7);
+          if (val.length > 7) formatted += "-" + val.slice(7, 9);
+
+          field.onChange(formatted); // <--- burada react-hook-form üçün value təyin edirik
+        }}
+        value={field.value || ""}
+      />
+    
+    </>
+  )}
+/>
+
+        </div>
+        {errors.phoneNumber && (
+          <p className="error-message"> {errors.phoneNumber.message}</p>
+        )}
+      </div> */}
+
+{/* commentde olan contoller ile olandir */}
 
       <div className="input-group">
         <label htmlFor="password-signup">Password*</label>
         <div className="password-wrapper">
           <input
-            type="password"
+            type={showPassword ?'text':'password'}
             {...register("password", {
               required: "Password is required",
               minLength: {
@@ -102,33 +180,36 @@ export default function SignupForm() {
             id="password-signup"
             placeholder="Enter your password"
           />
-          {errors.password && (
-            <p className="error-message"> {errors.password.message}</p>
-          )}
+
           <span className="password-icon">
-            <EyeIcon />
+                {showPassword ? <FaRegEye onClick={()=>setShowPassword(false)} />:<FaRegEyeSlash onClick={()=>setShowPassword(true)} />}
           </span>
         </div>
+                  {errors.password && (
+            <p className="error-message"> {errors.password.message}</p>
+          )}
       </div>
 
       <div className="input-group">
         <label htmlFor="confirm-password">Confirm password*</label>
         <div className="password-wrapper">
           <input
-            type="password"
+               type={showConfirmPassword ?'text':'password'}
             {...register("confirmPassword", {
               required: "Please confirm your password",
+              validate:value=>value===password ||"Passwords do not match"
             })}
             id="confirm-password"
             placeholder="Confirm password"
           />
-          {errors.confirmPassword && (
-            <p className="error-message"> {errors.confirmPassword.message}</p>
-          )}
+
           <span className="password-icon">
-            <EyeIcon />
+             {showConfirmPassword ? <FaRegEye onClick={()=>setShowConfirmPassword(false)} />:<FaRegEyeSlash onClick={()=>setShowConfirmPassword(true)} />}
           </span>
         </div>
+                  {errors.confirmPassword && (
+            <p className="error-message"> {errors.confirmPassword.message}</p>
+          )}  
       </div>
 
       <div className="checkbox-group agreement">
@@ -141,7 +222,7 @@ export default function SignupForm() {
     <p className="error-message">{errors.terms.message}</p>
   )}
 
-      <button  type="submit" className="auth-button">
+      <button  type="submit" disabled={!isValid}  className={ isValid ? "auth-button active" : "auth-button disabled"} >
         Sign Up
       </button>
     </form>

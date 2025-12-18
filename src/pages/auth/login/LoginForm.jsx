@@ -1,14 +1,18 @@
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import "../auth.css";
+import { FaRegEye } from "react-icons/fa";
+import { FaRegEyeSlash } from "react-icons/fa";
+import { useState } from "react";
 
 export default function LoginForm() {
   
-  const {register,handleSubmit,formState: { errors },} = useForm();
+  const {register,handleSubmit,formState: { errors,isValid }} = useForm({ mode: "onChange" });
 
   const navigate = useNavigate();
 
-  const EyeIcon = () => <span>👁️</span>;
+  const [showPassword,setShowPassword]=useState(false);
+
 
   const onSubmit = (data) => {
     console.log(data);
@@ -21,21 +25,46 @@ export default function LoginForm() {
 
       <div className="input-group">
         <label htmlFor="email">Email</label>
-        <input type="email" id="email" placeholder="Enter your email" />
+        <input 
+        type="email"
+                  {...register("email", {
+            required: "Email is required",
+            pattern: {
+              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+              message: "Invalid email format",
+            },
+          })}
+          
+        
+         id="email" placeholder="Enter your email" />
+                 {errors.email && (
+          <p className="error-message"> {errors.email.message}</p>
+        )}
       </div>
 
       <div className="input-group">
         <label htmlFor="password">Password</label>
         <div className="password-wrapper">
           <input
-            type="password"
+             type={showPassword ?'text':'password'}
+              {...register("password", {
+              required: "Password is required",
+              minLength: {
+                value: 8,
+                message: "Password must be at least 8 characters long",
+              },
+            })}
             id="password"
             placeholder="Enter your password"
           />
+
           <span className="password-icon">
-            <EyeIcon />
+           {showPassword ? <FaRegEye onClick={()=>setShowPassword(false)} />:<FaRegEyeSlash onClick={()=>setShowPassword(true)} />}
           </span>
         </div>
+                          {errors.password && (
+            <p className="error-message"> {errors.password.message}</p>
+          )}
       </div>
 
       <div className="form-options">
@@ -43,12 +72,12 @@ export default function LoginForm() {
           <input type="checkbox" id="remember" />
           <label htmlFor="remember">Remember me</label>
         </div>
-        <a href="#forgot" className="forgot-password">
+        <Link to='/auth/login/forgotpassword' className="forgot-password">
           Forgot password?
-        </a>
+        </Link>
       </div>
 
-      <button type="submit" className="auth-button">
+      <button disabled={!isValid}  className={ isValid ? "auth-button active" : "auth-button disabled"}>
         Log in
       </button>
 

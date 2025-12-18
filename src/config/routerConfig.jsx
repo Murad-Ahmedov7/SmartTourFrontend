@@ -13,8 +13,9 @@ import TravelMemories from "../pages/travelMemories/TravelMemories";
 import Profil from "../pages/profil/Profil";
 import Recommend from "../pages/recommend/Recommend";
 import Community from "../pages/community/Community";
-import Login from "../pages/auth/login/Login";
-import Signup from "../pages/auth/signup/Signup";
+import Signup from "../pages/auth/Signup/Signup";
+import Login from "../pages/auth/Login/Login";
+import ForgotPassword from "../pages/auth/login/ForgotPassword";
 
 
 
@@ -24,6 +25,7 @@ const RouterConfig = () => {
       <Route path="/" element={<Home />} />
       <Route path="/auth/signup" element={<Signup/>}/>
       <Route path="/auth/login" element={<Login/>}/> 
+      <Route path="/auth/login/forgotpassword" element={<ForgotPassword/>}/> 
       <Route element={<Layout />}>
         
         <Route path="/customizeTour" element={<CustomizeTour />} />
