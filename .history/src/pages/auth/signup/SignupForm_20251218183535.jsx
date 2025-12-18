@@ -53,7 +53,7 @@ export default function SignupForm() {
           />
         }
         {errors.FullName && (
-          <p className="error-message"> {errors.FullName.message}</p>
+          <p className="error-message"> {errors.fullname.message}</p>
         )}
       </div>
 
@@ -108,8 +108,8 @@ export default function SignupForm() {
 
 
         </div>
-        {errors.Phone && (
-          <p className="error-message"> {errors.Phone.message}</p>
+        {errors.phoneNumber && (
+          <p className="error-message"> {errors.phoneNumber.message}</p>
         )}
       </div> 
 

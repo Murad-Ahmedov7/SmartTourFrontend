@@ -45,15 +45,15 @@ export default function SignupForm() {
         {
           <input
             type="text"
-            {...register("FullName", {
+            {...register("fullname", {
               required: "Full name is required",
             })}
             id="fullname"
             placeholder="Enter your name"
           />
         }
-        {errors.FullName && (
-          <p className="error-message"> {errors.FullName.message}</p>
+        {errors.fullname && (
+          <p className="error-message"> {errors.fullname.message}</p>
         )}
       </div>
 
@@ -82,7 +82,7 @@ export default function SignupForm() {
           <span>(+994)</span>
             <input
             type="tel"
-            {...register("Phone", {
+            {...register("phoneNumber", {
               required: "Phone number is required",
             })}
             id="phone"
@@ -108,8 +108,8 @@ export default function SignupForm() {
 
 
         </div>
-        {errors.Phone && (
-          <p className="error-message"> {errors.Phone.message}</p>
+        {errors.phoneNumber && (
+          <p className="error-message"> {errors.phoneNumber.message}</p>
         )}
       </div> 
 

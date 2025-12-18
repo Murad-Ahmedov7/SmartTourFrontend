@@ -15,18 +15,30 @@ export default function SignupForm() {
   const [showPassword,setShowPassword]=useState(false);
   const [showConfirmPassword,setShowConfirmPassword]=useState(false);
 
+  const[allSignUpData,setAllSignUpData]=useState([])
   const password=watch("password")
 
 
 
-  const onSubmit = async (data) => {
-  try {
-    const res = await baseApi.post("/auth/register", data);
-    console.log("Success:", res.data);
-    // navigate("/auth/login");
-  } catch (err) {
-    console.error("Error:", err);
-  }
+  useEffect(()=>{
+    const postData=async()=>{
+      try{
+       const res = await baseApi.post("auth/register", {
+        allSignUpData
+      });
+      console.log(res.data);
+      }
+
+      catch(err){
+        console.error("Error:", error);
+      }
+    }
+
+  },[])
+
+  const onSubmit = (data) => {
+    console.log(data);
+    setAllSignUpData(data)
   };
 
 
@@ -45,15 +57,15 @@ export default function SignupForm() {
         {
           <input
             type="text"
-            {...register("FullName", {
+            {...register("fullname", {
               required: "Full name is required",
             })}
             id="fullname"
             placeholder="Enter your name"
           />
         }
-        {errors.FullName && (
-          <p className="error-message"> {errors.FullName.message}</p>
+        {errors.fullname && (
+          <p className="error-message"> {errors.fullname.message}</p>
         )}
       </div>
 
@@ -82,7 +94,7 @@ export default function SignupForm() {
           <span>(+994)</span>
             <input
             type="tel"
-            {...register("Phone", {
+            {...register("phoneNumber", {
               required: "Phone number is required",
             })}
             id="phone"
@@ -108,8 +120,8 @@ export default function SignupForm() {
 
 
         </div>
-        {errors.Phone && (
-          <p className="error-message"> {errors.Phone.message}</p>
+        {errors.phoneNumber && (
+          <p className="error-message"> {errors.phoneNumber.message}</p>
         )}
       </div> 
 
@@ -206,7 +218,7 @@ export default function SignupForm() {
           )}  
       </div>
 
-      {/* <div className="checkbox-group agreement">
+      <div className="checkbox-group agreement">
         <input type="checkbox" id="terms"  {...register("terms", { required: "You must accept the terms" })} />
         <label htmlFor="terms">
           I agree to the terms of service and privacy policy
@@ -214,7 +226,7 @@ export default function SignupForm() {
       </div>
                {errors.terms && (
     <p className="error-message">{errors.terms.message}</p>
-  )} */}
+  )}
 
       <button  type="submit" disabled={!isValid}  className={ isValid ? "auth-button active" : "auth-button disabled"} >
         Sign Up

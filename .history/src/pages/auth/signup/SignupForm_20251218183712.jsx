@@ -109,7 +109,7 @@ export default function SignupForm() {
 
         </div>
         {errors.Phone && (
-          <p className="error-message"> {errors.Phone.message}</p>
+          <p className="error-message"> {errors.phoneNumber.message}</p>
         )}
       </div> 
 
