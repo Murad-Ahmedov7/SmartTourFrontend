@@ -7,6 +7,7 @@ import { FaRoad, FaEdit } from "react-icons/fa";
 import { PiPicnicTable } from "react-icons/pi";
 import { PiMountainsDuotone } from "react-icons/pi";
 import { SlPencil } from "react-icons/sl";
+import Navbar from "./Sidebar/Sidebar";
 import Sidebar from "./Sidebar/Sidebar";
 
 const EditableField = ({ label, initialValue, isPassword = false, onSave }) => {

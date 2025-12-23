@@ -7,7 +7,7 @@ import { FaRoad, FaEdit } from "react-icons/fa";
 import { PiPicnicTable } from "react-icons/pi";
 import { PiMountainsDuotone } from "react-icons/pi";
 import { SlPencil } from "react-icons/sl";
-import Sidebar from "./Sidebar/Sidebar";
+import Navbar from "./Navbar/Sidebar";
 
 const EditableField = ({ label, initialValue, isPassword = false, onSave }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -458,7 +458,7 @@ const Profil = () => {
     //   </div>{" "}
     // </div>
 
-    <Sidebar/>
+    <Navbar/>
   
   );
 };

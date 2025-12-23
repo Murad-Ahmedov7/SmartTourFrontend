@@ -9,7 +9,9 @@ export default function Navbar() {
       const [activeContent, setActiveContent] = useState("personal");
 
 
-        const renderContent = () => {
+      
+
+      const renderContent = () => {
     switch (activeContent) {
       case "personal":
         return <PersonalInfoContent />;
@@ -19,8 +21,7 @@ export default function Navbar() {
         return <SavedFiltersContent />;
       default:
         return <PersonalInfoContent />;
-    }
-  };
+    }};
     
   return (
     <div className="user-profile-page-container">

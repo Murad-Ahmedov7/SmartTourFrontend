@@ -7,7 +7,7 @@ import { FaRoad, FaEdit } from "react-icons/fa";
 import { PiPicnicTable } from "react-icons/pi";
 import { PiMountainsDuotone } from "react-icons/pi";
 import { SlPencil } from "react-icons/sl";
-import Sidebar from "./Sidebar/Sidebar";
+import Navbar from "./Navbar/Navbar";
 
 const EditableField = ({ label, initialValue, isPassword = false, onSave }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -235,15 +235,7 @@ const SavedFiltersContent = () => {
   );
 };
 
-const NavItem = ({ icon, label, isActive, onClick }) => (
-  <div
-    className={`profilPage-nav-item ${isActive ? "active" : ""}`}
-    onClick={onClick}
-  >
-    <span className="profilPage-nav-icon">{icon}</span>{" "}
-    <span className="profilPage-nav-label">{label}</span>{" "}
-  </div>
-);
+
 
 const Profil = () => {
   const [activeContent, setActiveContent] = useState("personal");
@@ -403,62 +395,60 @@ const Profil = () => {
   };
 
   return (
-    // <div className="user-profile-page-container">
-    //   {" "}
-    //   <div className="profilPage-profile-layout">
-    //     {" "}
-    //     <div className="profilPage-profile-sidebar">
-    //       {" "}
-    //       <div className="profilPage-sidebar-header">
-    //         {" "}
-    //         <img src={sevda} alt="Aygün" className="profilPage-user-avatar" />
-    //         <h2>Hello, Aygun!</h2>{" "}
-    //       </div>{" "}
-    //       <nav className="profilPage-profile-nav">
-    //         {" "}
-    //         <NavItem
-    //           icon="👤"
-    //           label="Personal information"
-    //           isActive={activeContent === "personal"}
-    //           onClick={() => setActiveContent("personal")}
-    //         />{" "}
-    //         <NavItem
-    //           icon="🕰️"
-    //           label="Tour history"
-    //           isActive={activeContent === "history"}
-    //           onClick={() => setActiveContent("history")}
-    //         />{" "}
-    //         <NavItem
-    //           icon="🔒"
-    //           label="Saved Filters & Favorites"
-    //           isActive={activeContent === "saved"}
-    //           onClick={() => setActiveContent("saved")}
-    //         />{" "}
-    //         <NavItem
-    //           icon="💳"
-    //           label="Payment methods"
-    //           isActive={false}
-    //           onClick={() => setActiveContent("payment")}
-    //         />{" "}
-    //         <NavItem
-    //           icon="🔔"
-    //           label="Notification settings"
-    //           isActive={false}
-    //           onClick={() => setActiveContent("notifications")}
-    //         />{" "}
-    //       </nav>{" "}
-    //     </div>
-    //     <div
-    //       className={`profilPage-profile-content ${
-    //         activeContent !== "personal" ? "profilPage-history-active" : ""
-    //       }`}
-    //     >
-    //       {renderContent()}{" "}
-    //     </div>{" "}
-    //   </div>{" "}
-    // </div>
-
-    <Sidebar/>
+    <div className="user-profile-page-container">
+      {" "}
+      <div className="profilPage-profile-layout">
+        {" "}
+        <div className="profilPage-profile-sidebar">
+          {" "}
+          <div className="profilPage-sidebar-header">
+            {" "}
+            <img src={sevda} alt="Aygün" className="profilPage-user-avatar" />
+            <h2>Hello, Aygun!</h2>{" "}
+          </div>{" "}
+          <nav className="profilPage-profile-nav">
+            {" "}
+            <NavItem
+              icon="👤"
+              label="Personal information"
+              isActive={activeContent === "personal"}
+              onClick={() => setActiveContent("personal")}
+            />{" "}
+            <NavItem
+              icon="🕰️"
+              label="Tour history"
+              isActive={activeContent === "history"}
+              onClick={() => setActiveContent("history")}
+            />{" "}
+            <NavItem
+              icon="🔒"
+              label="Saved Filters & Favorites"
+              isActive={activeContent === "saved"}
+              onClick={() => setActiveContent("saved")}
+            />{" "}
+            <NavItem
+              icon="💳"
+              label="Payment methods"
+              isActive={false}
+              onClick={() => setActiveContent("payment")}
+            />{" "}
+            <NavItem
+              icon="🔔"
+              label="Notification settings"
+              isActive={false}
+              onClick={() => setActiveContent("notifications")}
+            />{" "}
+          </nav>{" "}
+        </div>
+        <div
+          className={`profilPage-profile-content ${
+            activeContent !== "personal" ? "profilPage-history-active" : ""
+          }`}
+        >
+          {renderContent()}{" "}
+        </div>{" "}
+      </div>{" "}
+    </div>
   
   );
 };
