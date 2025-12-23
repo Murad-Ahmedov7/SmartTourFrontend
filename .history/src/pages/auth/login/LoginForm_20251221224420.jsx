@@ -1,0 +1,106 @@
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+import "../auth.css";
+import { FaRegEye } from "react-icons/fa";
+import { FaRegEyeSlash } from "react-icons/fa";
+import { useState } from "react";
+
+export default function LoginForm() {
+  
+  const {register,handleSubmit,formState: { errors,isValid }} = useForm({ mode: "onChange" });
+
+  const navigate = useNavigate();
+
+  const [showPassword,setShowPassword]=useState(false);
+
+
+  const onSubmit =  async (data) => {
+    try{
+      const res=await base
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <h1>Login Now!</h1>
+      <p>Welcome back! Please enter your details</p>
+
+      <div className="input-group">
+        <label htmlFor="email">Email</label>
+        <input 
+        type="email"
+                  {...register("email", {
+            required: "Email is required",
+            pattern: {
+              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+              message: "Invalid email format",
+            },
+          })}
+          
+        
+         id="email" placeholder="Enter your email" />
+                 {errors.email && (
+          <p className="error-message"> {errors.email.message}</p>
+        )}
+      </div>
+
+      <div className="input-group">
+        <label htmlFor="password">Password</label>
+        <div className="password-wrapper">
+          <input
+             type={showPassword ?'text':'password'}
+              {...register("password", {
+              required: "Password is required",
+              minLength: {
+                value: 8,
+                message: "Password must be at least 8 characters long",
+              },
+            })}
+            id="password"
+            placeholder="Enter your password"
+          />
+
+          <span className="password-icon">
+           {showPassword ? <FaRegEye onClick={()=>setShowPassword(false)} />:<FaRegEyeSlash onClick={()=>setShowPassword(true)} />}
+          </span>
+        </div>
+                          {errors.password && (
+            <p className="error-message"> {errors.password.message}</p>
+          )}
+      </div>
+
+      <div className="form-options">
+        <div className="checkbox-group">
+          <input type="checkbox" id="remember" />
+          <label htmlFor="remember">Remember me</label>
+        </div>
+        <Link to='/auth/login/forgotpassword' className="forgot-password">
+          Forgot password?
+        </Link>
+      </div>
+
+      <button disabled={!isValid}  className={ isValid ? "auth-button active" : "auth-button disabled"}>
+        Log in
+      </button>
+
+      <div className="switch-auth">
+        Don't have an account? <Link to="/auth/signup">Sign Up</Link>
+      </div>
+
+      <div className="divider">Or continue With</div>
+
+      <div className="social-login">
+        <button type="button" className="social-btn google">
+          G Google
+        </button>
+        <button type="button" className="social-btn facebook">
+          F
+        </button>
+        <button type="button" className="social-btn twitter">
+          X
+        </button>
+      </div>
+    </form>
+  );
+}
+
