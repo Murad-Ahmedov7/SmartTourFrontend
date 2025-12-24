@@ -1,0 +1,840 @@
+ .user-profile-page-container {
+     font-family: Arial, sans-serif;
+     background-color: #fcfcfc;
+     min-height: 100vh;
+     padding: 30px 20px;
+ }
+
+ .profilPage-profile-layout {
+     max-width: 1200px;
+     margin: 0 auto;
+     display: grid;
+     grid-template-columns: 280px 1fr;
+     gap: 40px;
+ }
+
+ .profilPage-profile-sidebar {
+     background-color: #fff;
+     border-radius: 8px;
+     padding: 20px 0;
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
+     height: fit-content;
+ }
+
+ .profilPage-sidebar-header {
+     display: flex;
+     align-items: center;
+     padding: 0 20px 20px 20px;
+     border-bottom: 1px solid #eee;
+     margin-bottom: 10px;
+ }
+
+ .profilPage-user-avatar {
+     width: 50px;
+     height: 50px;
+     border-radius: 50%;
+     margin-right: 15px;
+     object-fit: cover;
+     border: 2px solid #ddd;
+     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+ }
+
+ .profilPage-sidebar-header h2 {
+     font-size: 18px;
+     font-weight: 600;
+     margin: 0;
+     color: #333;
+ }
+
+ .profilPage-profile-nav {
+     padding: 10px 0;
+     display: block;
+ }
+
+ .profilPage-nav-item {
+     display: flex;
+     align-items: center;
+     padding: 12px 20px;
+     cursor: pointer;
+     transition: background-color 0.2s;
+     border-left: 3px solid transparent;
+     font-size: 15px;
+ }
+
+ .profilPage-nav-item.active {
+     background-color: #e6f0ff;
+     border-left-color: #007bff;
+     font-weight: 600;
+     color: #007bff;
+ }
+
+ .profilPage-nav-item:is(:nth-child(2), :nth-child(3)).active {
+     background-color: #fff;
+     border-left-color: transparent;
+     color: #333;
+ }
+
+ .profilPage-nav-item.active .profilPage-nav-icon {
+     color: #007bff;
+ }
+
+ .profilPage-nav-item:is(:nth-child(2), :nth-child(3)).active .profilPage-nav-icon {
+     color: #333;
+ }
+
+ .profilPage-nav-icon {
+     font-size: 18px;
+     margin-right: 15px;
+     color: #6c757d;
+ }
+
+
+ .profilPage-profile-content {
+     background-color: #fff;
+     border-radius: 8px;
+     padding: 30px;
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
+ }
+
+ .profilPage-profile-content.profilPage-history-active {
+     background-color: transparent;
+     padding: 0;
+     box-shadow: none;
+ }
+
+ .profilPage-section-title {
+     font-size: 22px;
+     font-weight: 700;
+     margin: 0 0 20px 0;
+     color: #333;
+     border-bottom: 1px solid #eee;
+     padding-bottom: 10px;
+ }
+
+ .profilPage-history-active .profilPage-section-title {
+     border-bottom: none;
+     margin-top: 10px;
+ }
+
+ .profilPage-personal-info-section .profilPage-info-row {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding: 15px 0;
+     border-bottom: 1px solid #eee;
+     font-size: 15px;
+     gap: 10px;
+ }
+
+ .profilPage-info-label {
+     font-weight: 600;
+     color: #555;
+     flex: 0 0 150px;
+ }
+
+ .profilPage-info-value-container {
+     display: flex;
+     align-items: center;
+     flex-grow: 1;
+     justify-content: flex-end;
+ }
+
+ .profilPage-info-value {
+     color: #333;
+     margin-right: 20px;
+     text-align: right;
+     width: 200px;
+ }
+
+ .profilPage-edit-input {
+     padding: 8px 10px;
+     border: 1px solid #ced4da;
+     border-radius: 4px;
+     font-size: 15px;
+     margin-right: 10px;
+     width: 200px;
+     box-sizing: border-box;
+ }
+
+ .profilPage-action-button.edit {
+     color: black;
+     border: none;
+ }
+
+ .profilPage-action-button.add {
+     color: black;
+     border: none;
+ }
+
+ .profilPage-action-button.save {
+     background-color: #007bff;
+     color: white;
+ }
+
+ .profilPage-tour-history-grid {
+     display: grid;
+     grid-template-columns: repeat(3, 1fr);
+     gap: 20px;
+
+     img {
+         width: 200px;
+     }
+ }
+
+ .profilPage-rating-star {
+     color: yellow;
+     font-size: 20px;
+ }
+
+ .profilPage-history-tour-card {
+     background-color: #fff;
+     border-radius: 8px;
+     overflow: hidden;
+     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+     border: 1px solid #eee;
+ }
+
+ .profilPage-history-tour-card .card-image-container {
+     width: 100%;
+     padding-top: 60%;
+     position: relative;
+ }
+
+ .profilPage-history-tour-card .card-image {
+     position: absolute;
+     top: 0;
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+ }
+
+ .profilPage-history-tour-card .card-content {
+     padding: 15px;
+     display: flex;
+     flex-direction: column;
+ }
+
+ .profilPage-history-tour-card .card-title {
+     font-size: 16px;
+     font-weight: 600;
+     margin: 0 0 5px 0;
+     color: #333;
+ }
+
+ .profilPage-history-tour-card .card-dates {
+     font-size: 13px;
+     color: #6c757d;
+     margin-bottom: 10px;
+ }
+
+ .profilPage-history-tour-card .card-rating-info {
+     font-size: 14px;
+     color: #333;
+     margin-bottom: 15px;
+ }
+
+ .profilPage-history-tour-card .rating-star {
+     color: #ffc107;
+     margin-right: 5px;
+ }
+
+ .profilPage-history-tour-card .card-actions {
+     display: flex;
+     gap: 10px;
+     margin-top: auto;
+ }
+
+ .profilPage-view-details-button {
+     background: none;
+     color: #007bff;
+     border: 1px solid #007bff;
+     padding: 8px 10px;
+     border-radius: 4px;
+     font-size: 14px;
+     font-weight: 600;
+     flex: 1;
+ }
+
+ .profilPage-add-comment-button {
+     background-color: #007bff;
+     color: white;
+     border: 1px solid #007bff;
+     padding: 8px 10px;
+     border-radius: 4px;
+     font-size: 14px;
+     font-weight: 600;
+     flex: 1;
+ }
+
+ .profilPage-section-title-alt {
+     font-size: 18px;
+     font-weight: 700;
+     margin-bottom: 15px;
+     color: #333;
+     display: flex;
+     align-items: center;
+ }
+
+ .profilPage-favorites-section {
+     margin-top: 0;
+ }
+
+ .profilPage-filters-section {
+     margin-top: 30px;
+ }
+
+ .profilPage-support-access-section {
+     margin-top: 15px;
+ }
+
+
+
+ .profilPage-security-section {
+     margin-top: 15px;
+ }
+
+ .profilPage-info-value-container {
+     display: flex;
+     justify-content: space-between;
+ }
+
+ .profilPage-favorites-list,
+ .profilPage-filters-list {
+     display: flex;
+     flex-direction: column;
+     gap: 10px;
+     margin-bottom: 30px;
+ }
+
+ .profilPage-filter-favorite-item {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     background-color: #fff;
+     padding: 12px 15px;
+     border-radius: 6px;
+     border: 1px solid #f0f0f0;
+     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+ }
+
+ .profilPage-item-details {
+     display: flex;
+     align-items: center;
+ }
+
+ .profilPage-item-icon {
+     font-size: 20px;
+     margin-right: 15px;
+ }
+
+ .profilPage-item-name {
+     font-size: 16px;
+     font-weight: 600;
+     margin: 0;
+ }
+
+ .profilPage-item-location {
+     font-size: 13px;
+     color: #6c757d;
+     margin: 0;
+ }
+
+ .profilPage-item-actions {
+     display: flex;
+     gap: 5px;
+ }
+
+ .profilPage-action-button.edit-small {
+     background: none;
+     border: none;
+     color: #6c757d;
+     cursor: pointer;
+     padding: 5px;
+ }
+
+ .profilPage-action-button.delete-small {
+     background: none;
+     border: none;
+     color: #dc3545;
+     cursor: pointer;
+     padding: 5px;
+ }
+
+
+ .profilPage-action-row {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding: 15px 0;
+     border-bottom: 1px solid #eee;
+ }
+
+
+
+ .profilPage-delete-button {
+     background-color: #D8D8D8;
+     color: #0D3E54;
+     border: none;
+     padding: 8px 15px;
+     border-radius: 4px;
+     font-weight: 600;
+     cursor: pointer;
+ }
+
+ .profilPage-log-out-button {
+     background-color: #D8D8D8;
+     color: #0D3E54;
+     border: none;
+     padding: 8px 15px;
+     border-radius: 4px;
+     font-weight: 600;
+     cursor: pointer;
+ }
+
+ @media (max-width: 900px) {
+
+     .profilPage-profile-layout {
+         grid-template-columns: 1fr;
+     }
+
+     .profilPage-profile-nav {
+         display: flex;
+         flex-wrap: wrap;
+         justify-content: space-around;
+         gap: 10px;
+     }
+
+     .profilPage-nav-item {
+         flex-direction: column;
+         text-align: center;
+         border-left: none;
+         border-bottom: 3px solid transparent;
+         padding: 10px;
+     }
+
+     .profilPage-tour-history-grid {
+         grid-template-columns: repeat(2, 1fr);
+     }
+
+     .profilPage-personal-info-section .profilPage-info-row,
+     .profilPage-action-row {
+         flex-direction: column;
+         align-items: flex-start;
+         gap: 10px;
+     }
+
+     .profilPage-info-value-container {
+         width: 100%;
+         justify-content: space-between;
+         margin-top: 5px;
+     }
+
+     .profilPage-edit-input,
+     .profilPage-info-value {
+         width: calc(100% - 70px);
+         box-sizing: border-box;
+     }
+ }
+
+ @media (max-width: 600px) {
+     .profilPage-tour-history-grid {
+         grid-template-columns: 1fr;
+     }
+ }
+
+ .user-profile-page-container {
+     font-family: Arial, sans-serif;
+     background-color: #fcfcfc;
+     min-height: 100vh;
+     padding: 30px 20px;
+ }
+
+ .profilPage-profile-layout {
+     max-width: 1200px;
+     margin: 0 auto;
+
+     display: flex !important;
+     flex-wrap: nowrap !important;
+     gap: 40px;
+ }
+
+ .profilPage-profile-sidebar {
+     flex: 0 0 280px !important;
+     max-width: 280px !important;
+
+     background-color: #fff;
+     border-radius: 8px;
+     padding: 20px 0;
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
+     height: fit-content;
+ }
+
+ .profilPage-sidebar-header {
+     display: flex;
+     align-items: center;
+     padding: 0 20px 20px 20px;
+     border-bottom: 1px solid #eee;
+     margin-bottom: 10px;
+ }
+
+ .profilPage-user-avatar {
+     width: 50px;
+     height: 50px;
+     border-radius: 50%;
+     margin-right: 15px;
+     object-fit: cover;
+     border: 2px solid #ddd;
+     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+ }
+
+ .profilPage-sidebar-header h2 {
+     font-size: 18px;
+     font-weight: 600;
+     margin: 0;
+     color: #333;
+ }
+
+ .profilPage-profile-nav {
+     padding: 10px 0;
+     display: block;
+ }
+
+ .profilPage-nav-item {
+     display: flex;
+     align-items: center;
+     padding: 12px 20px;
+     cursor: pointer;
+     border-left: 3px solid transparent;
+     font-size: 15px;
+ }
+
+ .profilPage-nav-item.active {
+     background-color: #e6f0ff;
+     border-left-color: #007bff;
+     font-weight: 600;
+     color: #007bff;
+ }
+
+ .profilPage-nav-icon {
+     font-size: 18px;
+     margin-right: 15px;
+     color: #6c757d;
+ }
+
+ .profilPage-nav-item.active .profilPage-nav-icon {
+     color: #007bff;
+ }
+
+ .profilPage-nav-item:is(:nth-child(2), :nth-child(3)).active {
+     background-color: #f5f5f5;
+     border-left-color: transparent;
+     color: #333;
+ }
+
+ .profilPage-nav-item:is(:nth-child(2), :nth-child(3)).active .profilPage-nav-icon {
+     color: #333;
+ }
+
+
+ .profilPage-profile-content {
+     flex-grow: 1;
+     min-width: 0;
+
+     background-color: #fff;
+     border-radius: 8px;
+     padding: 30px;
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
+ }
+
+ .profilPage-profile-content.profilPage-history-active {
+     background-color: transparent;
+     padding: 0;
+     box-shadow: none;
+ }
+
+ .profilPage-tour-history-grid {
+     display: grid;
+     grid-template-columns: repeat(3, 1fr);
+     gap: 20px;
+ }
+
+ .profilPage-profile-content.profilPage-history-active {
+     background-color: transparent;
+     padding: 0;
+     box-shadow: none;
+ }
+
+ .profilPage-history-active .profilPage-section-title {
+     font-size: 24px;
+     font-weight: 700;
+     margin: 10px 0 25px 0;
+     color: #0D3E54;
+     border-bottom: none;
+     padding-bottom: 0;
+
+ }
+
+ .profilPage-section-title {
+     color: #0D3E54;
+ }
+
+ .profilPage-log-out-button .profilPage-delete-button {
+     background-color: #abaaaa;
+     color: #333;
+     border: none;
+     padding: 8px 15px;
+     border-radius: 4px;
+     font-weight: 600;
+     cursor: pointer;
+ }
+
+ .profilPage-tour-history-grid {
+     display: grid;
+     grid-template-columns: repeat(3, 1fr);
+     gap: 20px;
+ }
+
+ .profilPage-history-tour-card {
+     background-color: #fff;
+     border-radius: 8px;
+     overflow: hidden;
+     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+     border: 1px solid #eee;
+ }
+
+ .profilPage-history-tour-card .card-image-container {
+     width: 100%;
+     padding-top: 60%;
+     position: relative;
+ }
+
+ .profilPage-history-tour-card .card-image {
+     position: absolute;
+     top: 0;
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+ }
+
+ .profilPage-history-tour-card .card-content {
+     padding: 15px;
+     display: flex;
+     flex-direction: column;
+     height: 100%;
+ }
+
+ .profilPage-history-tour-card .card-title {
+     font-size: 16px;
+     font-weight: 600;
+     margin: 0 0 5px 0;
+     color: #333;
+ }
+
+ .profilPage-history-tour-card .card-dates {
+     font-size: 13px;
+     color: #6c757d;
+     margin-bottom: 10px;
+ }
+
+ .profilPage-history-tour-card .card-rating-info {
+     font-size: 14px;
+     color: #333;
+     margin-bottom: 15px;
+ }
+
+ .profilPage-history-tour-card .rating-star {
+     color: #ffc107;
+     margin-right: 5px;
+ }
+
+ .profilPage-history-tour-card .card-actions {
+     display: flex;
+     gap: 10px;
+     margin-top: auto;
+ }
+
+ .profilPage-view-details-button {
+     background: none;
+     color: #007bff;
+     border: 1px solid #007bff;
+     padding: 8px 10px;
+     border-radius: 4px;
+     font-size: 14px;
+     font-weight: 600;
+     cursor: pointer;
+     flex: 1;
+ }
+
+ .profilPage-add-comment-button {
+     background-color: #007bff;
+     color: white;
+     border: 1px solid #007bff;
+     padding: 8px 10px;
+     border-radius: 4px;
+     font-size: 14px;
+     font-weight: 600;
+     cursor: pointer;
+     flex: 1;
+ }
+
+ .profilPage-history-tour-card .card-image-container {
+     width: 100%;
+     padding-top: 0;
+     height: 180px;
+
+     position: relative;
+ }
+
+ .profilPage-tour-history-grid {
+     display: grid;
+     grid-template-columns: repeat(3, 1fr);
+     gap: 20px;
+ }
+
+ .profilPage-history-tour-card {
+     background-color: #fff;
+     border-radius: 8px;
+     overflow: hidden;
+     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+     border: 1px solid #eee;
+ }
+
+ .profilPage-history-tour-card .card-image-container {
+     width: 100%;
+     height: 180px;
+     padding-top: 0;
+     position: relative;
+ }
+
+ .profilPage-history-tour-card .card-image {
+     position: absolute;
+     top: 0;
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+ }
+
+
+ .profilPage-history-tour-card .card-content {
+     padding: 15px;
+     display: flex;
+     flex-direction: column;
+     height: 100%;
+ }
+
+ .editBtn {
+     border: none;
+ }
+
+
+
+ .profilPage-custom-switch {
+     position: relative;
+     display: inline-block;
+     width: 50px;
+     height: 28px;
+     margin-left: 10px;
+ }
+
+ .profilPage-custom-switch input {
+     opacity: 0;
+     width: 0;
+     height: 0;
+ }
+
+ .profilPage-slider {
+     position: absolute;
+     cursor: pointer;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     background-color: #ccc;
+     transition: 0.4s;
+ }
+
+ .profilPage-slider:before {
+     position: absolute;
+     content: "";
+     height: 20px;
+     width: 20px;
+     left: 4px;
+     bottom: 4px;
+     background-color: white;
+     transition: 0.4s;
+ }
+
+ input:checked+.profilPage-slider {
+     background-color: #007bff;
+ }
+
+ input:checked+.profilPage-slider:before {
+     transform: translateX(22px);
+ }
+
+ .profilPage-slider.profilPage-round {
+     border-radius: 28px;
+ }
+
+ .profilPage-slider.profilPage-round:before {
+     border-radius: 50%;
+ }
+
+
+
+ .profilPage-label-value-wrapper {
+     display: flex;
+     flex-direction: column;
+     align-items: flex-start;
+     flex-grow: 1;
+     gap: 4px;
+ }
+
+ .profilPage-info-label {
+     font-weight: 600;
+     color: #6c757d;
+     font-size: 14px;
+     flex: none;
+ }
+
+ .profilPage-info-value {
+     color: #333;
+     font-weight: 600;
+     font-size: 16px;
+     margin-right: 0;
+     text-align: left;
+     width: auto;
+ }
+
+ .profilPage-edit-input {
+     margin-right: 0;
+     width: 100%;
+     max-width: 300px;
+     margin-top: 0;
+ }
+
+ 
+ .profilPage-personal-info-section .profilPage-info-row .profilPage-info-value-container {
+     display: contents;
+ }
+
+  .titleTwo {
+     color: #0D3E54;
+ }
+
+ 
+.profilPage-personal-info-section .profilPage-info-row .profilPage-info-value-container,
+.profilPage-security-section .profilPage-info-row .profilPage-info-value-container {
+display: contents;
+} 
+
+.profilPage-personal-info-section .profilPage-info-row,
+.profilPage-security-section .profilPage-info-row {
+/* display: flex;
+justify-content: space-between;
+align-items: center; */
+padding: 15px 0;
+border-bottom: 1px solid #eee;
+font-size: 15px;
+gap: 10px;
+}

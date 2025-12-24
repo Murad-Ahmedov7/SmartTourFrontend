@@ -10,7 +10,7 @@ import Cart from "../pages/cart/Cart";
 import PaymentPages from "../pages/paymentPages/PaymentPages";
 import LiveTour from "../pages/liveTour/LiveTour";
 import TravelMemories from "../pages/travelMemories/TravelMemories";
-import Profile from "../pages/profile/Profile";
+
 import Recommend from "../pages/recommend/Recommend";
 import Community from "../pages/community/Community";
 import Signup from "../pages/auth/Signup/Signup";
@@ -36,7 +36,7 @@ const RouterConfig = () => {
         <Route path="/payment" element={<PaymentPages />} />
         <Route path="/live" element={<LiveTour />} />
         <Route path="/TravelMemories" element={<TravelMemories />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profil" element={<Profil />} />
         <Route path="/recommend" element={<Recommend />} />
         <Route path="/community" element={<Community />} />
       </Route>

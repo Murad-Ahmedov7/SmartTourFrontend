@@ -1,0 +1,89 @@
+import "../profil.css";
+
+
+import sevda from "../../../assets/sevda.jpg";
+import { useState } from "react";
+// import SidebarItem from "./SidebarItem";
+import PersonalInfoContent from "../PersonalInfoContent";
+import TourHistoryContent from "../TourHistoryContent";
+import SavedFiltersContent from "../SavedFiltersContent";
+
+
+
+
+  const SidebarItem=({ icon, label, isActive, onClick })=> {
+  return (
+    <div
+      className={`profilPage-nav-item ${isActive ? "active" : ""}`}
+      onClick={onClick}
+    >
+      <span className="profilPage-nav-icon">{icon}</span>{" "}
+      <span className="profilPage-nav-label">{label}</span>{" "}
+    </div>
+  );
+}
+
+
+export default function Sidebar() {
+
+
+    const [activeContent, setActiveContent] = useState("personal");
+
+
+    const sidebarItems = [
+  { icon: "👤", label: "Personal information", contentKey: "personal" },
+  { icon: "🕰️", label: "Tour history", contentKey: "history" },
+  { icon: "🔒", label: "Saved Filters & Favorites", contentKey: "saved" },
+  { icon: "💳", label: "Payment methods", contentKey: "payment" },
+  { icon: "🔔", label: "Notification settings", contentKey: "notifications" },
+];
+
+
+
+
+   const renderContent = () => {
+    switch (activeContent) {
+      case "personal":
+        return <PersonalInfoContent />;
+      case "history":
+        return <TourHistoryContent />;
+      case "saved":
+        return <SavedFiltersContent />;
+      default:
+        return <PersonalInfoContent />;
+    }
+  };
+  return(
+       <div className="user-profile-page-container">          
+          {" "}
+          <div className="profilPage-profile-layout">
+            {" "}
+            <div className="profilPage-profile-sidebar">
+              {" "}
+              <div className="profilPage-sidebar-header">
+                {" "}
+                <img src={sevda} alt="Aygün" className="profilPage-user-avatar" />
+                <h2>Hello, Aygun!</h2>{" "}
+              </div>{" "}
+              <nav className="profilPage-profile-nav">
+                {" "}
+                <SidebarItem
+      key={item.contentKey}
+      icon={item.icon}
+      label={item.label}
+      isActive={activeContent === item.contentKey}
+      onClick={() => setActiveContent(item.contentKey)}
+                />{" "}
+              </nav>{" "}
+            </div>
+            <div
+              className={`profilPage-profile-content ${
+                activeContent !== "personal" ? "profilPage-history-active" : ""
+              }`}
+            >
+              {renderContent()}{" "}
+            </div>{" "}
+          </div>{" "}
+        </div>
+  )
+}

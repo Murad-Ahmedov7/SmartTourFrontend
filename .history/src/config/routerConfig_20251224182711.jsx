@@ -36,7 +36,7 @@ const RouterConfig = () => {
         <Route path="/payment" element={<PaymentPages />} />
         <Route path="/live" element={<LiveTour />} />
         <Route path="/TravelMemories" element={<TravelMemories />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profil" element={<Profile />} />
         <Route path="/recommend" element={<Recommend />} />
         <Route path="/community" element={<Community />} />
       </Route>
