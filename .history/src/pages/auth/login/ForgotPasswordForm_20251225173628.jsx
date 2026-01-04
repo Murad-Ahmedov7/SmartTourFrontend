@@ -1,0 +1,74 @@
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+import "../auth.css";
+import { FaRegEye } from "react-icons/fa";
+import { FaRegEyeSlash } from "react-icons/fa";
+import { useState } from "react";
+
+
+export default function ForgotPasswordForm() {
+
+  const {register,handleSubmit,formState: { errors,isValid }} = useForm({ mode: "onChange" });
+
+  const navigate = useNavigate();
+
+  const [showNewPassword,setShowNewPassword]=useState(false);
+  const [showConfirmPassword,setShowConfirmPassword]=useState(false);
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
+  return (
+        <form onSubmit={handleSubmit(onSubmit)}>
+      <h1>Forgot Password?</h1>
+      <p> Just provide your email to recover your account.</p>
+
+  
+   <div className="input-group">
+        <label htmlFor="email">Email</label>
+        <input 
+        type="email"
+                  {...register("Email", {
+            required: "Email is required",
+            pattern: {
+              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+              message: "Invalid email format",
+            },
+          })}
+          
+        
+         id="email" placeholder="Enter your email" />
+                 {errors.Email && (
+          <p className="error-message"> {errors.Email.message}</p>
+        )}
+      </div>
+
+   
+
+   
+
+      <button disabled={!isValid}  className={ isValid ? "auth-button active" : "auth-button disabled"}>
+        Send Reset Link
+      </button>
+
+      {/* <div className="switch-auth">
+        Don't have an account? <Link to="/auth/signup">Sign Up</Link>
+      </div> */}
+
+      {/* <div className="divider">Or continue With</div>
+
+      <div className="social-login">
+        <button type="button" className="social-btn google">
+          G Google
+        </button>
+        <button type="button" className="social-btn facebook">
+          F
+        </button>
+        <button type="button" className="social-btn twitter">
+          X
+        </button>
+      </div> */}
+    </form>
+  )
+}
