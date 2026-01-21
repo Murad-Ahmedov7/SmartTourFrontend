@@ -11,8 +11,9 @@ import waterSafariImg from "../../assets/waterSafari.jpg";
 import campingImg from "../../assets/camping.jpg";
 import parachuteImg from "../../assets/parachute.jpg";
 import seaTripImg from "../../assets/seaTrip.jpg";
+import baseApi from "../../api/baseApi";
  
-const vocationTypes = [
+const vacationTypes = [
   { id: 1, name: "Amusement park", imageUrl: amusementParkImg },
   { id: 2, name: "Historical", imageUrl: historicalImg },
   { id: 3, name: "Village Tour", imageUrl: villageImg },
@@ -24,50 +25,50 @@ const vocationTypes = [
   { id: 9, name: "Sea trip", imageUrl: seaTripImg },
 ];
  
-const VocationCard = ({ name, imageUrl, isSelected, onSelect }) => {
+const VacationCard = ({ name, imageUrl, isSelected, onSelect }) => {
   return (
     <div
-      className={`vocation-card ${isSelected ? "selected" : ""}`}
+      className={`vacation-card ${isSelected ? "selected" : ""}`}
       style={{ backgroundImage: `url(${imageUrl})` }}
       onClick={() => onSelect(name)}
     >
-      <div className="vocation-checkbox">
+      <div className="vacation-checkbox">
         <input
           type="checkbox"
-          id={`vocation-${name}`}
+          id={`vacation-${name}`}
           name={name}
           checked={isSelected}
           onChange={() => onSelect(name)}
           style={{ display: "none" }}
         />
-        <label htmlFor={`vocation-${name}`} className="checkbox-icon">
+        <label htmlFor={`vacation-${name}`} className="checkbox-icon">
           {isSelected ? "✔️" : "◻️"}
         </label>
       </div>
 
-      <span className="vocation-name">{name}</span>
+      <span className="vacation-name">{name}</span>
     </div>
   );
 };
  
-const VocationTypesSection = ({ selectedVocationTypes, onVocationSelect }) => {
+const VacationTypesSection = ({ selectedVacationTypes, onVacationSelect }) => {
   return (
-    <div className="vocation-section-container">
-      <div className="vocation-header">
-        <h2 className="vocation-title">Vocation type</h2>
+    <div className="vacation-section-container">
+      <div className="vacation-header">
+        <h2 className="vacation-title">Vacation type</h2>
         <a href="/see-all" className="see-all-link">
           See all <span className="arrow-icon">{">"}</span>
         </a>
       </div>
 
-      <div className="vocation-cards-grid">
-        {vocationTypes.map((type) => (
-          <VocationCard
+      <div className="vacation-cards-grid">
+        {vacationTypes.map((type) => (
+          <VacationCard
             key={type.id}
             name={type.name}
             imageUrl={type.imageUrl}
-            isSelected={selectedVocationTypes.includes(type.name)}
-            onSelect={onVocationSelect}
+            isSelected={selectedVacationTypes.includes(type.name)}
+            onSelect={onVacationSelect}
           />
         ))}
       </div>
@@ -76,52 +77,164 @@ const VocationTypesSection = ({ selectedVocationTypes, onVocationSelect }) => {
 };
  
 const CustomizeTour = () => {
-  const min = 50;
-  const max = 1000;
+  // const min = 50;
+  // const max = 1000;
   const DEFAULT_BUDGET_VALUE = 250;
   const navigate = useNavigate();
  
-  const [budget, setBudget] = useState(DEFAULT_BUDGET_VALUE);
+  // const [budget, setBudget] = useState(DEFAULT_BUDGET_VALUE);
   const [comfort, setComfort] = useState("Premium");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [selectedMonth, setSelectedMonth] = useState("");
-  const [adults, setAdults] = useState("");
-  const [children, setChildren] = useState("");
-  const [selectedVocationTypes, setSelectedVocationTypes] = useState([]);
+  const[minBudget,setMinBudget]=useState("")
+  const[maxBudget,setMaxBudget]=useState("")
+  // const [selectedMonth, setSelectedMonth] = useState("");
+  const [groupType, setGroupType] = useState("");
+  const [region, setRegion] = useState("");
+  // const [children, setChildren] = useState("");
+  const [selectedVacationTypes, setSelectedVacationTypes] = useState([]);
+
+
+  const budgetFields = [
+  { label: "Min Budget (AZN)", placeholder: "e.g. 100",value:minBudget,onChange:(e)=>setMinBudget(e.target.value) },
+  { label: "Max Budget (AZN)", placeholder: "e.g. 5000",value:maxBudget,onChange:(e)=>setMaxBudget(e.target.value) },
+];
+
+
+
+
+// const travelerCountSelects = [
+//   {
+//     placeholder: "Adults",
+//     value: adults,
+//     onChange: (e) => setAdults(e.target.value),
+//     options: [
+//       { value: "1", label: "1" },
+//       { value: "2", label: "2" },
+//       { value: "3", label: "3" },
+//       { value: "4+", label: "4+" },
+//     ],
+//   },
+//   {
+//     placeholder: "Children",
+//     value: children,
+//     onChange: (e) => setChildren(e.target.value),
+//     options: [
+//       { value: "0", label: "0" },
+//       { value: "1", label: "1" },
+//       { value: "2", label: "2" },
+//       { value: "3+", label: "3+" },
+//     ],
+//   },
+// ];
+
+
+ const groupTypes = [
+  {
+    placeholder: "Select Type",
+    value: groupType,
+    onChange: (e) => setGroupType(e.target.value),
+    options: [
+      { value: "Solo", label: "Solo" },
+      { value: "Couple", label: "Couple" },
+      { value: "Friends", label: "Friends" },
+      { value: "Family", label: "Family" },
+    ],
+  }
+ ]
+
+const regionOptions = [
+  { value: "Sheki", label: "Sheki" },
+  { value: "Baku", label: "Baku" },
+];
+
+const comfortOptions = ["Economy", "Standard", "Premium"];
+
+// const monthOptions = [
+//   { value: "Jan", label: "January" },
+//   { value: "Feb", label: "February" },
+//   { value: "Mar", label: "March" },
+//   { value: "Apr", label: "April" },
+//   { value: "May", label: "May" },
+//   { value: "Jun", label: "June" },
+//   { value: "Jul", label: "July" },
+//   { value: "Aug", label: "August" },
+//   { value: "Sep", label: "September" },
+//   { value: "Oct", label: "October" },
+//   { value: "Nov", label: "November" },
+//   { value: "Dec", label: "December" },
+// ];
  
- 
-  const handleVocationSelect = (vocationName) => {
-    setSelectedVocationTypes((prevSelected) => {
-      if (prevSelected.includes(vocationName)) {
-        return prevSelected.filter((name) => name !== vocationName);
+  const handleVacationSelect = (vacationName) => {
+    setSelectedVacationTypes((prevSelected) => {
+      if (prevSelected.includes(vacationName)) {
+        return prevSelected.filter((name) => name !== vacationName);
       } else {
-        return [...prevSelected, vocationName];
+        return [...prevSelected, vacationName];
       }
     });
   };
 
-  const handleSliderChange = (event) => {
-    setBudget(Number(event.target.value));
-  };
+  // const handleSliderChange = (event) => {
+  //   setBudget(Number(event.target.value));
+  // };
+
+
+  const payload={
+    region:region,
+    // startDate: "2026-07-01T00:00:00 ", //duzelt
+    //  endDate :"2026-07-03T00:00:00", //duzelt
+    startDate:`${startDate}T00:00:00`,
+    endDate :`${endDate}T00:00:00`,
+    budgetMin:Number(minBudget),
+    budgetMax:Number(maxBudget),
+    groupType:groupType,
+    tourTypes:selectedVacationTypes
+  }
+
+
+  const handleShowTour=async()=>{
+    try{
+      if (!region) { alert("Please select region"); return; }
+      if (!startDate) { alert("Please select start date"); return; }
+      if (!endDate) { alert("Please select end date"); return; }
+   
+     const res=await baseApi.post("/tours/customize",payload);
+      // console.log(region)
+      // console.log(minBudget)
+      console.log(res.data)
+      alert("Navigating to SelectTour...");
+      navigate("/selectTour");
+
+    }
+
+catch (err) {
+    console.error(err.response.data.message);
+    alert("No tours found matching the selected filters.")
+  }
+  }
  
-  const handleShowTour = () => { 
-    console.log("Navigating to SelectTour...");
-    navigate("/selectTour");
-  };
+  // const handleShowTour = () => { 
+  //   console.log("Navigating to SelectTour...");
+  //   navigate("/selectTour");
+  // };
 
   const handleResetFilters = () => {
-    setBudget(DEFAULT_BUDGET_VALUE);
+    // setBudget(DEFAULT_BUDGET_VALUE);
+    setMinBudget("");
+    setMaxBudget("");
     setComfort("Premium");
     setStartDate("");
     setEndDate("");
-    setSelectedMonth("");
-    setAdults("");
-    setChildren("");
-    setSelectedVocationTypes([]);
+    // setSelectedMonth("");
+    setGroupType("")
+    setRegion("");
+    // setAdults("");
+    // setChildren("");
+    setSelectedVacationTypes([]);
   };
 
-  const percentage = ((budget - min) / (max - min)) * 100;
+  // const percentage = ((budget - min) / (max - min)) * 100;
 
   return (
     <div className="customizeContainer">
@@ -132,7 +245,7 @@ const CustomizeTour = () => {
 
         <div className="budget-container">
           <h1>Budget</h1>
-          <div className="slider-wrapper">
+          {/* <div className="slider-wrapper">
             <input
               type="range"
               min={min}
@@ -147,82 +260,97 @@ const CustomizeTour = () => {
                 ? `${min}-${max} azn`
                 : `${budget} azn`}
             </span>
-          </div>
+          </div> */}
           <p className="price-info">Choose your price range</p>
 
-          <VocationTypesSection
-            selectedVocationTypes={selectedVocationTypes}
-            onVocationSelect={handleVocationSelect}
+          <div className="budget-filter">
+            {
+             budgetFields.map((item, index) => (
+             <div key={index} className="budget-field">
+            <label>{item.label}</label>
+            <input
+              type="number"
+              min={0}
+              value={item.value}
+              onChange={item.onChange}
+              className="budget-input"
+              placeholder={item.placeholder}
+              style={{marginTop:"14px"}}
+            />
+          </div>
+        ))}
+
+
+          </div>
+
+          <VacationTypesSection
+            selectedVacationTypes={selectedVacationTypes}
+            onVacationSelect={handleVacationSelect}
           />
 
           <div className="tour-filters-section">
             <div className="filter-group-row">
+
+
               <div className="filter-column">
-                <h4 className="filter-header">Number of Travels</h4>
+                <h4 className="filter-header">Group Types</h4>
+              {groupTypes.map((field, idx) => (
                 <select
+                  key={idx}
                   className="custom-select"
-                  value={adults}
-                  onChange={(e) => setAdults(e.target.value)}
+                  value={field.value}
+                  onChange={field.onChange}
                 >
                   <option value="" disabled>
-                    Adults
+                    {field.placeholder}
                   </option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4+">4+</option>
+
+                  {field.options.map((opt) => (
+                    <option key={opt.value} value={opt.value}>
+                      {opt.label}
+                    </option>
+                  ))}
                 </select>
+              ))}
+              </div>
+              
+
+             <div className="filter-column">
+                <h4 className="filter-header">Regions</h4>
                 <select
                   className="custom-select"
-                  value={children}
-                  onChange={(e) => setChildren(e.target.value)}
+                  value={region}
+                  onChange={(e) => setRegion(e.target.value)}
                 >
                   <option value="" disabled>
-                    Children
+                    Select Region
                   </option>
-                  <option value="0">0</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3+">3+</option>
+                {regionOptions.map((opt) => (
+                  <option key={opt.value} value={opt.value}>
+                    {opt.label}
+                  </option>
+                ))}
+
                 </select>
+              
               </div>
 
               <div className="filter-column">
                 <h4 className="filter-header">Comfort Level</h4>
                 <div className="comfort-options"> 
-                  <label className="custom-radio-label">
+                {comfortOptions.map((opt) => (
+                  <label key={opt} className="custom-radio-label">
                     <input
                       type="radio"
                       name="comfort"
-                      value="Economy"
-                      checked={comfort === "Economy"}
-                      onChange={() => setComfort("Economy")}
+                      value={opt}
+                      checked={comfort === opt}
+                      onChange={() => setComfort(opt)}
                       className="custom-radio-input"
                     />
-                    Economy
+                    {opt}
                   </label>
-                  <label className="custom-radio-label">
-                    <input
-                      type="radio"
-                      name="comfort"
-                      value="Standart"
-                      checked={comfort === "Standart"}
-                      onChange={() => setComfort("Standart")}
-                      className="custom-radio-input"
-                    />
-                    Standart
-                  </label>
-                  <label className="custom-radio-label">
-                    <input
-                      type="radio"
-                      name="comfort"
-                      value="Premium"
-                      checked={comfort === "Premium"}
-                      onChange={() => setComfort("Premium")}
-                      className="custom-radio-input"
-                    />
-                    Premium
-                  </label>
+                ))}
                 </div>
               </div>
 
@@ -244,7 +372,7 @@ const CustomizeTour = () => {
                     onChange={(e) => setEndDate(e.target.value)}
                   />
                 </div>
-                <select
+                {/* <select
                   className="custom-select"
                   value={selectedMonth}
                   onChange={(e) => setSelectedMonth(e.target.value)}
@@ -252,27 +380,22 @@ const CustomizeTour = () => {
                   <option value="" disabled>
                     Select month
                   </option>
-                  <option value="Jan">January</option>
-                  <option value="Feb">February</option>
-                  <option value="Mar">March</option>
-                  <option value="Apr">April</option>
-                  <option value="May">May</option>
-                  <option value="Jun">June</option>
-                  <option value="Jul">July</option>
-                  <option value="Aug">August</option>
-                  <option value="Sep">September</option>
-                  <option value="Oct">October</option>
-                  <option value="Nov">November</option>
-                  <option value="Dec">December</option>
-                </select>
+                  {monthOptions.map((m) => (
+                    <option key={m.value} value={m.value}>
+                      {m.label}
+                      </option>
+                    ))}
+                </select> */}
               </div>
+
             </div>
+
 
             <div className="filter-buttons">
               <button
                 className="show-tour-btn active" 
-                onClick={handleShowTour}
-            
+                // onClick={handleShowTour}
+                onClick={handleShowTour}            
               >
                 Show Tour
               </button>
@@ -291,3 +414,5 @@ const CustomizeTour = () => {
 };
 
 export default CustomizeTour;
+
+

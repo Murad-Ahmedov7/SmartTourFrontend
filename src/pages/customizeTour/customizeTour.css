@@ -30,17 +30,34 @@
   font-family: sans-serif;
 }
 
+.budget-filter {
+  display: flex;
+  gap: 30px;
+  margin-top: 14px;
+}
+
+.budget-input {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  font-size: 1rem;
+  color: #333;
+  height: 45px;
+}
+
 h1 {
   color: #1a2a4b;
   margin-bottom: 20px;
 }
 
-.slider-wrapper {
+/* .slider-wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-}
+} */
 
 .custom-range-slider {
   width: 70%;
@@ -59,7 +76,7 @@ h1 {
 .price-info {
   color: #7b89a8;
   font-size: 0.9em;
-  margin-top: 5px;
+  margin-top: 0px;
 }
 
 .custom-range-slider::-webkit-slider-runnable-track {
@@ -105,18 +122,18 @@ h1 {
 
 
 
-.vocation-section-container {
+.vacation-section-container {
   margin-top: 40px;
 }
 
-.vocation-header {
+.vacation-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
 }
 
-.vocation-title {
+.vacation-title {
   font-size: 1.5rem;
   color: #333;
   font-weight: bold;
@@ -135,7 +152,7 @@ h1 {
   font-weight: bold;
 }
 
-.vocation-cards-grid {
+.vacation-cards-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 20px;
@@ -381,26 +398,26 @@ h1 {
 }
 
 @media (max-width: 1200px) {
-  .vocation-cards-grid {
+  .vacation-cards-grid {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
 @media (max-width: 900px) {
-  .vocation-cards-grid {
+  .vacation-cards-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (max-width: 600px) {
-  .vocation-cards-grid {
+  .vacation-cards-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 
 
-.vocation-card {
+.vacation-card {
   position: relative;
   width: 100%;
   padding-top: 60%;
@@ -416,12 +433,12 @@ h1 {
   justify-content: space-between;
 }
 
-.vocation-card:hover {
+.vacation-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
 
-.vocation-card::before {
+.vacation-card::before {
   content: "";
   position: absolute;
   top: 0;
@@ -432,7 +449,7 @@ h1 {
   z-index: 1;
 }
 
-.vocation-checkbox {
+.vacation-checkbox {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -461,7 +478,7 @@ input[type="checkbox"]:checked+.checkbox-icon {
   content: "\2713";
 }
 
-.vocation-name {
+.vacation-name {
   position: absolute;
   bottom: 10px;
   left: 10px;
