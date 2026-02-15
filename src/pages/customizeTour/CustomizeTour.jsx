@@ -1,7 +1,7 @@
-import React, { useState } from "react";  
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./customizeTour.css";
- 
+
 import amusementParkImg from "../../assets/amusementPark.jpg";
 import historicalImg from "../../assets/historical.jpg";
 import villageImg from "../../assets/village.jpg";
@@ -12,7 +12,7 @@ import campingImg from "../../assets/camping.jpg";
 import parachuteImg from "../../assets/parachute.jpg";
 import seaTripImg from "../../assets/seaTrip.jpg";
 import baseApi from "../../api/baseApi";
- 
+
 const vacationTypes = [
   { id: 1, name: "Amusement park", imageUrl: amusementParkImg },
   { id: 2, name: "Historical", imageUrl: historicalImg },
@@ -24,7 +24,7 @@ const vacationTypes = [
   { id: 8, name: "Parachute", imageUrl: parachuteImg },
   { id: 9, name: "Sea trip", imageUrl: seaTripImg },
 ];
- 
+
 const VacationCard = ({ name, imageUrl, isSelected, onSelect }) => {
   return (
     <div
@@ -50,7 +50,7 @@ const VacationCard = ({ name, imageUrl, isSelected, onSelect }) => {
     </div>
   );
 };
- 
+
 const VacationTypesSection = ({ selectedVacationTypes, onVacationSelect }) => {
   return (
     <div className="vacation-section-container">
@@ -75,96 +75,111 @@ const VacationTypesSection = ({ selectedVacationTypes, onVacationSelect }) => {
     </div>
   );
 };
- 
+
 const CustomizeTour = () => {
   // const min = 50;
   // const max = 1000;
   const DEFAULT_BUDGET_VALUE = 250;
   const navigate = useNavigate();
- 
+
   // const [budget, setBudget] = useState(DEFAULT_BUDGET_VALUE);
-  const [comfort, setComfort] = useState("Premium");
+  const [comfort, setComfort] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const[minBudget,setMinBudget]=useState("")
-  const[maxBudget,setMaxBudget]=useState("")
+  const [minBudget, setMinBudget] = useState("");
+  const [maxBudget, setMaxBudget] = useState("");
   // const [selectedMonth, setSelectedMonth] = useState("");
   const [groupType, setGroupType] = useState("");
   const [region, setRegion] = useState("");
   // const [children, setChildren] = useState("");
   const [selectedVacationTypes, setSelectedVacationTypes] = useState([]);
 
-
   const budgetFields = [
-  { label: "Min Budget (AZN)", placeholder: "e.g. 100",value:minBudget,onChange:(e)=>setMinBudget(e.target.value) },
-  { label: "Max Budget (AZN)", placeholder: "e.g. 5000",value:maxBudget,onChange:(e)=>setMaxBudget(e.target.value) },
-];
+    {
+      label: "Min Budget (AZN)",
+      placeholder: "e.g. 100",
+      value: minBudget,
+      onChange: (e) => setMinBudget(e.target.value),
+    },
+    {
+      label: "Max Budget (AZN)",
+      placeholder: "e.g. 5000",
+      value: maxBudget,
+      onChange: (e) => setMaxBudget(e.target.value),
+    },
+  ];
+
+  // const travelerCountSelects = [
+  //   {
+  //     placeholder: "Adults",
+  //     value: adults,
+  //     onChange: (e) => setAdults(e.target.value),
+  //     options: [
+  //       { value: "1", label: "1" },
+  //       { value: "2", label: "2" },
+  //       { value: "3", label: "3" },
+  //       { value: "4+", label: "4+" },
+  //     ],
+  //   },
+  //   {
+  //     placeholder: "Children",
+  //     value: children,
+  //     onChange: (e) => setChildren(e.target.value),
+  //     options: [
+  //       { value: "0", label: "0" },
+  //       { value: "1", label: "1" },
+  //       { value: "2", label: "2" },
+  //       { value: "3+", label: "3+" },
+  //     ],
+  //   },
+  // ];
+
+  const groupTypes = [
+    {
+      placeholder: "Select Type",
+      value: groupType,
+      onChange: (e) => setGroupType(e.target.value),
+      options: [
+        { value: "Solo", label: "Solo" },
+        { value: "Couple", label: "Couple" },
+        { value: "Friends", label: "Friends" },
+        { value: "Family", label: "Family" },
+      ],
+    },
+  ];
+
+  const regionOptions = [
+    { value: "Baku", label: "Baku" },
+    { value: "Sheki", label: "Sheki" },
+    { value: "Quba", label: "Quba" },
+    { value: "Qusar", label: "Qusar" },
+    { value: "Shamaki", label: "Shamaki" },
+    { value: "Gabala", label: "Gabala" },
+    { value: "Lankaran", label: "Lankaran" },
+    { value: "Ganja", label: "Ganja" },
+    { value: "Nakhchivan", label: "Nakhchivan" },
 
 
 
+  ]; 
 
-// const travelerCountSelects = [
-//   {
-//     placeholder: "Adults",
-//     value: adults,
-//     onChange: (e) => setAdults(e.target.value),
-//     options: [
-//       { value: "1", label: "1" },
-//       { value: "2", label: "2" },
-//       { value: "3", label: "3" },
-//       { value: "4+", label: "4+" },
-//     ],
-//   },
-//   {
-//     placeholder: "Children",
-//     value: children,
-//     onChange: (e) => setChildren(e.target.value),
-//     options: [
-//       { value: "0", label: "0" },
-//       { value: "1", label: "1" },
-//       { value: "2", label: "2" },
-//       { value: "3+", label: "3+" },
-//     ],
-//   },
-// ];
+  // regionlar ucun api yaz gelecekde(cunki coxalacaq)
+
+  const comfortOptions = ["Economy", "Standard", "Premium"];
+
+  const tourFilters = {
+    region,
+    startDate,
+    endDate,
+    comfort,
+    minBudget,
+    maxBudget,
+    groupType,
+    selectedVacationTypes,
+  };
 
 
- const groupTypes = [
-  {
-    placeholder: "Select Type",
-    value: groupType,
-    onChange: (e) => setGroupType(e.target.value),
-    options: [
-      { value: "Solo", label: "Solo" },
-      { value: "Couple", label: "Couple" },
-      { value: "Friends", label: "Friends" },
-      { value: "Family", label: "Family" },
-    ],
-  }
- ]
 
-const regionOptions = [
-  { value: "Sheki", label: "Sheki" },
-  { value: "Baku", label: "Baku" },
-];
-
-const comfortOptions = ["Economy", "Standard", "Premium"];
-
-// const monthOptions = [
-//   { value: "Jan", label: "January" },
-//   { value: "Feb", label: "February" },
-//   { value: "Mar", label: "March" },
-//   { value: "Apr", label: "April" },
-//   { value: "May", label: "May" },
-//   { value: "Jun", label: "June" },
-//   { value: "Jul", label: "July" },
-//   { value: "Aug", label: "August" },
-//   { value: "Sep", label: "September" },
-//   { value: "Oct", label: "October" },
-//   { value: "Nov", label: "November" },
-//   { value: "Dec", label: "December" },
-// ];
- 
   const handleVacationSelect = (vacationName) => {
     setSelectedVacationTypes((prevSelected) => {
       if (prevSelected.includes(vacationName)) {
@@ -175,59 +190,142 @@ const comfortOptions = ["Economy", "Standard", "Premium"];
     });
   };
 
+      console.log("RAW minBudget:", minBudget);
+
+
   // const handleSliderChange = (event) => {
   //   setBudget(Number(event.target.value));
   // };
 
 
-  const payload={
-    region:region,
-    // startDate: "2026-07-01T00:00:00 ", //duzelt
-    //  endDate :"2026-07-03T00:00:00", //duzelt
-    startDate:`${startDate}T00:00:00`,
-    endDate :`${endDate}T00:00:00`,
-    budgetMin:Number(minBudget),
-    budgetMax:Number(maxBudget),
-    groupType:groupType,
-    tourTypes:selectedVacationTypes
+
+
+  const handleShowTour = async () => {
+
+
+
+    try {
+
+      // console.log("RAW minBudget:", minBudget);
+// console.log("Number(minBudget):", Number(minBudget));
+      if (!region) {
+        alert("Please select region");
+        return;
+      }
+      if (!startDate) {
+        alert("Please select start date");
+        return;
+      }
+      if (!endDate) {
+        alert("Please select end date");
+        return;
+      }
+
+      if(minBudget<0 ||maxBudget<0){
+        alert("Min or Max budget cannot be negative");
+        return;
+      }
+
+
+
+
+      // alert("Navigating to SelectTour...");
+      // navigate("/selectTour");
+
+     
+
+  localStorage.setItem("filters", JSON.stringify(tourFilters));
+
+  const stored=localStorage.getItem("filters");
+  const filters=stored? JSON.parse(stored):{};
+
+
+
+
+  const addIfNotEmpty = (obj, key, value) => {
+
+    if(key==='minBudget'  && value.trim() !=="" || key==='maxBudget'  && value.trim() !=="" ){
+      obj[key]=Number(value.trim());
+    }
+
+    else if(Array.isArray(value) && value.length>0){
+     obj[key] = value;
+    }
+
+  else if (typeof value === "string" && value.trim() !== "") {
+    obj[key] = value.trim();
   }
+};
 
+  
 
-  const handleShowTour=async()=>{
-    try{
-      if (!region) { alert("Please select region"); return; }
-      if (!startDate) { alert("Please select start date"); return; }
-      if (!endDate) { alert("Please select end date"); return; }
-   
-     const res=await baseApi.post("/tours/customize",payload);
+  const payload = {
+    region:filters.region,
+    startDate: `${filters.startDate}T00:00:00`, 
+    endDate: `${filters.endDate}T00:00:00`,
+  };
+
+  (addIfNotEmpty(payload,"comfort",filters.comfort));
+  (addIfNotEmpty(payload,"groupType",filters.groupType));
+  (addIfNotEmpty(payload,"minBudget",filters.minBudget));
+  (addIfNotEmpty(payload,"maxBudget",filters.maxBudget));
+  (addIfNotEmpty(payload,"tourTypes",filters.selectedVacationTypes));
+
+  // console.log(payload)
+  // localStorage.setItem("payload", JSON.stringify(payload));
+
+      // const res=await baseApi.post("/tours/customize",payload);
+
+      localStorage.setItem("result",JSON.stringify(payload));
       // console.log(region)
       // console.log(minBudget)
-      console.log(res.data)
+      // console.log(res.data)
+
       alert("Navigating to SelectTour...");
       navigate("/selectTour");
 
-    }
 
-catch (err) {
-    console.error(err.response.data.message);
-    alert("No tours found matching the selected filters.")
-  }
-  }
- 
-  // const handleShowTour = () => { 
-  //   console.log("Navigating to SelectTour...");
-  //   navigate("/selectTour");
-  // };
+   }
+
+     catch (err) {
+      // console.error(err.response.data.message);
+      console.error(err)
+      // alert("No tours found matching the selected filters.");
+    }
+  };
+
+  //     const handleShowTour=async()=>{
+  //     try{
+  //       if (!region) { alert("Please select region"); return; }
+  //       if (!startDate) { alert("Please select start date"); return; }
+  //       if (!endDate) { alert("Please select end date"); return; }
+
+  //      const res=await baseApi.post("/tours/customize",payload);
+  //       // console.log(region)
+  //       // console.log(minBudget)
+  //       // console.log(res.data.tours)
+
+  //       localStorage.setItem("tours",JSON.stringify(res.data.tours));
+  //       alert("Navigating to SelectTour...");
+  //       navigate("/selectTour");
+
+  //     }
+
+  // catch (err) {
+  //     console.error(err.response.data.message);
+  //     alert("No tours found matching the selected filters.")
+  //   }
+  //   }
 
   const handleResetFilters = () => {
     // setBudget(DEFAULT_BUDGET_VALUE);
     setMinBudget("");
     setMaxBudget("");
-    setComfort("Premium");
+    setComfort("");
     setStartDate("");
     setEndDate("");
     // setSelectedMonth("");
-    setGroupType("")
+    setGroupType("");
     setRegion("");
     // setAdults("");
     // setChildren("");
@@ -235,6 +333,11 @@ catch (err) {
   };
 
   // const percentage = ((budget - min) / (max - min)) * 100;
+
+
+
+
+
 
   return (
     <div className="customizeContainer">
@@ -264,23 +367,20 @@ catch (err) {
           <p className="price-info">Choose your price range</p>
 
           <div className="budget-filter">
-            {
-             budgetFields.map((item, index) => (
-             <div key={index} className="budget-field">
-            <label>{item.label}</label>
-            <input
-              type="number"
-              min={0}
-              value={item.value}
-              onChange={item.onChange}
-              className="budget-input"
-              placeholder={item.placeholder}
-              style={{marginTop:"14px"}}
-            />
-          </div>
-        ))}
-
-
+            {budgetFields.map((item, index) => (
+              <div key={index} className="budget-field">
+                <label>{item.label}</label>
+                <input
+                  type="number"
+                  min={0}
+                  value={item.value}
+                  onChange={item.onChange}
+                  className="budget-input"
+                  placeholder={item.placeholder}
+                  style={{ marginTop: "14px" }}
+                />
+              </div>
+            ))}
           </div>
 
           <VacationTypesSection
@@ -290,32 +390,29 @@ catch (err) {
 
           <div className="tour-filters-section">
             <div className="filter-group-row">
-
-
               <div className="filter-column">
                 <h4 className="filter-header">Group Types</h4>
-              {groupTypes.map((field, idx) => (
-                <select
-                  key={idx}
-                  className="custom-select"
-                  value={field.value}
-                  onChange={field.onChange}
-                >
-                  <option value="" disabled>
-                    {field.placeholder}
-                  </option>
-
-                  {field.options.map((opt) => (
-                    <option key={opt.value} value={opt.value}>
-                      {opt.label}
+                {groupTypes.map((field, idx) => (
+                  <select
+                    key={idx}
+                    className="custom-select"
+                    value={field.value}
+                    onChange={field.onChange}
+                  >
+                    <option value="" disabled>
+                      {field.placeholder}
                     </option>
-                  ))}
-                </select>
-              ))}
-              </div>
-              
 
-             <div className="filter-column">
+                    {field.options.map((opt) => (
+                      <option key={opt.value} value={opt.value}>
+                        {opt.label}
+                      </option>
+                    ))}
+                  </select>
+                ))}
+              </div>
+
+              <div className="filter-column">
                 <h4 className="filter-header">Regions</h4>
                 <select
                   className="custom-select"
@@ -325,32 +422,30 @@ catch (err) {
                   <option value="" disabled>
                     Select Region
                   </option>
-                {regionOptions.map((opt) => (
-                  <option key={opt.value} value={opt.value}>
-                    {opt.label}
-                  </option>
-                ))}
-
+                  {regionOptions.map((opt) => (
+                    <option key={opt.value} value={opt.value}>
+                      {opt.label}
+                    </option>
+                  ))}
                 </select>
-              
               </div>
 
               <div className="filter-column">
                 <h4 className="filter-header">Comfort Level</h4>
-                <div className="comfort-options"> 
-                {comfortOptions.map((opt) => (
-                  <label key={opt} className="custom-radio-label">
-                    <input
-                      type="radio"
-                      name="comfort"
-                      value={opt}
-                      checked={comfort === opt}
-                      onChange={() => setComfort(opt)}
-                      className="custom-radio-input"
-                    />
-                    {opt}
-                  </label>
-                ))}
+                <div className="comfort-options">
+                  {comfortOptions.map((opt) => (
+                    <label key={opt} className="custom-radio-label">
+                      <input
+                        type="radio"
+                        name="comfort"
+                        value={opt}
+                        checked={comfort === opt}
+                        onChange={() => setComfort(opt)}
+                        className="custom-radio-input"
+                      />
+                      {opt}
+                    </label>
+                  ))}
                 </div>
               </div>
 
@@ -387,15 +482,13 @@ catch (err) {
                     ))}
                 </select> */}
               </div>
-
             </div>
-
 
             <div className="filter-buttons">
               <button
-                className="show-tour-btn active" 
+                className="show-tour-btn active"
                 // onClick={handleShowTour}
-                onClick={handleShowTour}            
+                onClick={handleShowTour}
               >
                 Show Tour
               </button>
@@ -414,5 +507,7 @@ catch (err) {
 };
 
 export default CustomizeTour;
+
+
 
 
