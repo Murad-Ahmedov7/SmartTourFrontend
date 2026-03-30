@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './aboutTour.css'; 
 
 import shakiTourImage from '../../assets/shaki.jpg'; 
@@ -9,6 +9,8 @@ import sevda from '../../assets/sevda.jpg';
 import daniel from '../../assets/daniel.jpg'; 
 import aysel from '../../assets/aysel.jpg'; 
 import Map from '../../assets/map.png'; 
+import { useParams } from 'react-router-dom';
+import baseApi from '../../api/baseApi';
 
 
 const RelatedTourCard = ({ image, title, days, price, tag }) => (
@@ -54,7 +56,29 @@ const ReviewCard = ({ avatar, name, location, rating, text }) => (
     </div>
 );
 
+
+//Sonra ucun React Query yaz.
+
+
+
 const AboutTour = () => {
+
+///////////////////////////////////////////yeni kodd
+const { id }=useParams();
+const [tour,setTour]=useState();
+ const fetchData= async()=>{
+    const res=await baseApi.get(`/tours/${id}`);
+    // console.log(res.data);
+    setTour(res.data);
+ }
+
+
+ useEffect(()=>{
+    fetchData()
+ },[])
+
+/////////////////////////////
+
 
     const relatedToursData = [
         { image: quba, title: "Quba Mountain", days: "2 days / 1 night", price: "100 azn", tag: "Mountain Tour" },
@@ -70,7 +94,7 @@ const AboutTour = () => {
     ];
     
     return (
-      <div className="shaki-page-container">
+      <div className="tour-page-container">
         
         <div className="tour-details-section">
             <header className="tour-detail-nav">
@@ -150,6 +174,8 @@ const AboutTour = () => {
                     </div>
                 </div>
             </div>
+
+            
         </div>
         
         <div className="customer-reviews-section">

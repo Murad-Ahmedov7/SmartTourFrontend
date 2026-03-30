@@ -10,10 +10,20 @@ export default function useTours() {
 
   const [sortBy, setSortBy] = useState("price_asc");
 
+
+  const slugify = (text) =>
+  text
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/\s+/g, "-");
+
   const limit = 10;
 
   const fetchTours = async () => {
-    const stored = JSON.parse(localStorage.getItem("filters")) || {};
+    // const stored = JSON.parse(localStorage.getItem("filters")) || {};
+
+    const stored=JSON.parse(localStorage.getItem("result")) || {};
 
     const payload = {
       ...stored,
@@ -26,7 +36,7 @@ export default function useTours() {
 
     const res = await baseApi.post("/tours/customize", payload);
 
-    console.log(res.data);
+    console.log("Api result",res.data);
     setTours(res.data.tours);
     setTotal(res.data.total);
   };
@@ -43,5 +53,6 @@ export default function useTours() {
     sortBy,
     setSortBy,
     limit,
+    slugify
   };
 }

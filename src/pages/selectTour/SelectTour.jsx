@@ -1,4 +1,3 @@
-
 import { useNavigate, Link, data } from "react-router-dom";
 import "./selectTour.css";
 
@@ -7,30 +6,17 @@ import { Pagination } from "./ui/Pagination";
 import { DestinationCard } from "./ui/DestinationCard";
 import useTours from "./model/useTours";
 
-
-
 const SelectTour = () => {
   const navigate = useNavigate();
 
-
-  const {
-    tours,
-    total,
-    page,
-    setPage,
-    sortBy,
-    setSortBy,
-    limit,
-  } = useTours();
-
-
-
-
+  const { tours, total, page, setPage, sortBy, setSortBy, limit,slugify } = useTours();
 
   const handleGoBack = () => {
     // navigate(-1);
     navigate("/customizeTour");
   };
+
+
 
   return (
     <div className="app-container">
@@ -66,31 +52,43 @@ const SelectTour = () => {
       </div>
 
       {/* New feature sorting */}
-     
+
       <SortSelect value={sortBy} onChange={setSortBy} />
 
-      <div className="tours-count">
-        {total} tours found
-      </div>
+      <div className="tours-count">{total} tours found</div>
 
       <main className="destinations-grid">
-        {tours.map((dest, index) => (
-          <DestinationCard
-            key={index}
-            thumbnail={dest.thumbnail}
-            title={dest.title}
-            price={dest.price}
-            rating={dest.rating}
-            durationDays={dest.durationDays}
-            shortDescription={dest.shortDescription}
-          />
-        ))}
+        {tours.map((dest, index) => 
+        {
+          const slug=slugify(dest.title)
+          return(
+            <Link style={{textDecoration:'none'}} to={`/tours/${slug}/${dest.id}`}>
+            <DestinationCard
+              key={index}
+              thumbnail={dest.thumbnail}
+              title={dest.title}
+              price={dest.price}
+              rating={dest.rating}
+              durationDays={dest.durationDays}
+              shortDescription={dest.shortDescription}
+            />
+          </Link>
+          
+          )
+        }
+        
+        )}
       </main>
 
       {/* New feature pagination */}
 
-      <Pagination page={page} total={total} limit={limit} onChange={setPage}/>
-
+      <Pagination
+        page={page}
+        setPage={setPage}
+        total={total}
+        limit={limit}
+        onChange={setPage}
+      />
     </div>
   );
 };

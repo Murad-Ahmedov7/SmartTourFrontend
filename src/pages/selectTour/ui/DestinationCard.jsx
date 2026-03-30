@@ -10,8 +10,10 @@ export const DestinationCard = ({
   durationDays,
   isSelected,
   shortDescription,
-}) => (
-  <div className={`destination-card ${isSelected ? "selected" : ""}`}>
+}) =>
+  
+  (
+  <div className="destination-card">
     <div className="card-image-container">
       <img src={thumbnail} alt="" className="card-image" />
     </div>

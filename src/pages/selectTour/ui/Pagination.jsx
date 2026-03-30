@@ -1,4 +1,4 @@
-export const Pagination = ({ page, total, limit }) => {
+export const Pagination = ({ page,setPage, total, limit }) => {
   const totalPages = Math.ceil(total / limit);
 
   return (

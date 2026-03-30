@@ -40,6 +40,7 @@
 .main-content-wrapper {
     display: flex;
     flex-direction: column;
+    
     padding: 0 20px;
 }
 
@@ -167,6 +168,18 @@
     color: #495057;
     line-height: 1.6;
     margin-bottom: 25px;
+}
+
+.tour-description {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #334155;
+
+  padding-left: 16px;
+  border-left: 4px solid #38bdf8;
+  background: linear-gradient(to right, #f8fafc, transparent);
+
+  margin-bottom: 28px;
 }
 
 .section-title-small {
@@ -358,9 +371,11 @@ border: none;
 }
 
 .customer-reviews-section {
-    padding: 40px 20px;
-    background-color: #fff;
-
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 3px solid #e2e8f0; /* Inclusions ilə eyni xətt */
+  background-color: transparent; /* ağ blok hissi verməsin */
+  
 }
 
 .section-main-title {
@@ -445,6 +460,30 @@ border: none;
     width: 100%;
     height: 400px;
 }
+.map-info {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 14px;
+  font-size: 14px;
+  color: #475569;
+}
+
+.map-coordinates {
+  background: #f8fafc;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+}
+
+.map-coordinates span {
+  margin-right: 6px;
+  color: #64748b;
+}
+
+.map-coordinates strong {
+  color: #0f172a;
+}
+
 
 .baku-map-image {
     width: 100%;
@@ -510,3 +549,342 @@ border: none;
         width: 100%;
     }
 }
+
+
+
+/* TourSummary */
+
+.tour-summary {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 32px;
+  margin-bottom: 40px;
+}
+
+/* Image */
+.tour-summary-image img {
+  width: 100%;
+  height: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Info */
+.tour-summary-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tour-title {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.tour-region {
+  color: #666;
+}
+
+.tour-meta {
+  display: flex;
+  gap: 16px;
+  font-size: 14px;
+  color: #444;
+}
+
+.tour-price {
+  font-size: 22px;
+  margin: 12px 0;
+}
+
+.tour-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+/* Buttons */
+.btn-primary {
+  background: #0066ff;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-secondary {
+  background: #f1f3f5;
+  color: #111;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .tour-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .tour-summary-image img {
+    max-height: 260px;
+  }
+}
+
+
+/* TourSummary */
+
+
+
+/* =========================
+   TOUR OVERVIEW – MODERN
+========================= */
+
+.tour-overview {
+  background: #ffffff;
+  border-radius: 18px;
+
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.05);
+  margin-top: 24px;
+  margin-bottom: 26px;
+}
+
+/* Section title */
+.section-title {
+  font-size: 26px;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 16px;
+}
+
+/* Description text */
+.tour-description {
+  font-size: 17px;
+  line-height: 1.7;
+  color: #334155;
+  max-width: 700px;
+}
+
+/* Subtitle */
+.section-subtitle {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 32px 0 16px;
+  color: #0f172a;
+}
+
+/* Highlights list */
+.tour-highlights {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 24px;
+}
+
+/* Highlight item */
+.highlight-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+
+  background: #f8fafc;
+  padding: 12px 14px;
+  border-radius: 12px;
+
+  font-size: 16px;
+  color: #1f2937;
+}
+
+/* Check icon */
+.check-icon {
+  color: #22c55e;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 1;
+}
+
+
+
+
+/* =========================
+   ITINERARY TOP DIVIDER
+========================= */
+
+.tour-itinerary {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 3px solid #e2e8f0; /* yuxarı ayırıcı xətt */
+}
+
+
+
+/* =========================
+   ITINERARY ROW – PREMIUM
+========================= */
+
+.itinerary-row {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+
+  background: #ffffff;
+  border: 3px solid #e2e8f0;
+  border-left: 4px solid #38bdf8; /* agenda accent */
+
+  border-radius: 18px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.itinerary-row:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================
+   RIGHT CONTENT – STRUCTURED
+========================= */
+
+
+
+.itinerary-left {
+  width: 64px;
+  min-width: 64px;
+  height: 64px;
+
+  /* əsas vizual anchor */
+  background: linear-gradient(135deg, #2563eb, #38bdf8);
+  color: #ffffff;
+
+  border-radius: 16px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 600;
+}
+
+.itinerary-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Title = main agenda item */
+.itinerary-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+/* Divider between title & program */
+.itinerary-title::after {
+  content: "";
+  display: block;
+  width: 36px;
+  height: 2px;
+  background: #38bdf8;
+  margin-top: 6px;
+  border-radius: 2px;
+}
+
+/* Program / description */
+.itinerary-description {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.6;
+}
+
+
+
+/* =========================
+   INCLUSIONS SECTION
+========================= */
+
+.tour-inclusions {
+  margin-bottom: 56px;
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 3px solid #e2e8f0; /* yuxarı ayırıcı xətt */
+}
+
+/* Grid layout */
+.inclusions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+/* Common box */
+.inclusions-box {
+  background: #ffffff;
+  padding: 22px 24px;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+}
+
+/* Titles */
+.inclusions-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  color: #0f172a;
+}
+
+/* List */
+.inclusions-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+}
+
+.inclusions-box li {
+  display: flex;
+  align-items: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #334155;
+}
+
+/* Icons */
+.inclusion-icon  {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 13px;
+  font-weight: bold;
+}
+
+/* Included */
+.included-icon {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+/* Excluded */
+.excluded-icon {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+

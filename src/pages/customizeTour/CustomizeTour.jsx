@@ -57,16 +57,7 @@ const CustomizeTour = () => {
   // regionlar ucun api yaz gelecekde(cunki coxalacaq)
 
 
-  // const tourFilters = {
-  //   region,
-  //   startDate,
-  //   endDate,
-  //   comfort,
-  //   minBudget,
-  //   maxBudget,
-  //   groupType,
-  //   selectedVacationTypes,
-  // };
+
 
   // console.log("RAW minBudget:", minBudget);
 
@@ -98,7 +89,7 @@ const CustomizeTour = () => {
             comfort={comfort}
             setComfort={setComfort}
             groupType={groupType}
-            setGroupType={groupType}
+            setGroupType={setGroupType}
             startDate={startDate}
             setStartDate={setStartDate}
             endDate={endDate}

@@ -17,6 +17,7 @@ import Signup from "../pages/auth/Signup/Signup";
 import Login from "../pages/auth/Login/Login";
 import ForgotPassword from "../pages/auth/login/ForgotPassword";
 import ResetPassword from "../pages/auth/login/ResetPassword";
+import TourDetails from "../pages/tours/TourDetails";
 
 
 
@@ -33,7 +34,11 @@ const RouterConfig = () => {
         <Route path="/customizeTour" element={<CustomizeTour />} />
         <Route path="/selectTour" element={<SelectTour />} />
         <Route path="/chooseTour" element={<ChooseTour />} />
-        <Route path="/aboutTour" element={<AboutTour />} />
+
+        {/* <Route path="/aboutTour" element={<AboutTour />} /> */}
+        {/* <Route path="/tours/:slug/:id" element={<AboutTour />} /> */}
+        <Route path="/tours/:slug/:id" element={<TourDetails />} />
+
         <Route path="/cart" element={<Cart />} />
         <Route path="/payment" element={<PaymentPages />} />
         <Route path="/live" element={<LiveTour />} />

@@ -13,13 +13,30 @@ export default function useCustomizeTour() {
   const [region, setRegion] = useState("");
   const [selectedVacationTypes, setSelectedVacationTypes] = useState([]);
 
+
+
+    const tourFilters = {
+    region,
+    startDate,
+    endDate,
+    comfort,
+    minBudget,
+    maxBudget,
+    groupType,
+    selectedVacationTypes,
+  };
+
   const addIfNotEmpty = (obj, key, value) => {
     if (
       (key === "minBudget" && value.trim() !== "") ||
       (key === "maxBudget" && value.trim() !== "")
-    ) {
-      obj[key] = Number(value.trim());
-    } else if (Array.isArray(value) && value.length > 0) {
+    ) 
+      {
+      console.log(obj[key] = Number(value.trim()));
+
+    
+      } 
+    else if (Array.isArray(value) && value.length > 0) {
       obj[key] = value;
     } else if (typeof value === "string" && value.trim() !== "") {
       obj[key] = value.trim();
@@ -88,6 +105,8 @@ export default function useCustomizeTour() {
       addIfNotEmpty(payload, "tourTypes", filters.selectedVacationTypes);
 
       localStorage.setItem("result", JSON.stringify(payload));
+
+      // console.log(payload)
 
       alert("Navigating to SelectTour...");
       navigate("/selectTour");

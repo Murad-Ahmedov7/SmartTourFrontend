@@ -111,6 +111,7 @@
 .pagination-btn.disabled {
   background-color: #eee;
   cursor: not-allowed;
+  cursor: not-allowed;
 }
 
 .pagination-circle {
@@ -136,13 +137,24 @@
   gap: 20px; 
 }
 
-.destination-card {
-  border-radius: 8px;
-  /* overflow: hidden; */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e0e0e0; 
-  transition: all 0.2s ease-in-out;
+.destination-card { 
+   border-radius: 8px;
+   overflow: hidden;
+   cursor: pointer;            
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); 
+   border: 1px solid #e0e0e0; 
+  /* transition: all 0.2s ease-in-out;  */  
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+ }
+
+
+
+.destination-card:hover {
+  transform: translateY(-6px); 
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
+
+
 
 
 
